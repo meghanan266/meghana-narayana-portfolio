@@ -7,7 +7,7 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="py-20 bg-gray-800 text-white">
+    <section id="skills" className="py-20 bg-gradient-to-b from-black via-gray-800 to-black text-white">
       <div className="max-w-6xl mx-auto px-8">
         <h1 className="text-5xl font-extrabold text-center tracking-wide uppercase mb-14">
           01 Skills

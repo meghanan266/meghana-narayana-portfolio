@@ -36,7 +36,7 @@ function Experience() {
   ];
 
   return (
-    <section id="experience" className="relative py-24 bg-gray-800 text-white">
+    <section id="experience" className="relative py-24 bg-gradient-to-b from-black via-gray-800 to-black text-white">
       {/* Section Header */}
       <div className="text-center mb-14">
         <h2 className="text-5xl font-bold tracking-wide uppercase text-white">02 Experience</h2>

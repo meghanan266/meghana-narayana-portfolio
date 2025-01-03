@@ -14,10 +14,17 @@ export default function Home() {
       <div className="absolute inset-0 bg-black opacity-50"></div>
 
       <div className="relative z-10 flex items-start flex-col justify-center h-full px-10 md:px-20">
-        <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-Apricot text-center relative">
-          Turning Ideas Into Code:
-          <span className="absolute inset-x-0 bottom-0 border-b-4 border-Apricot"></span>
-        </h2>
+        <div className="relative text-center">
+          <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-Apricot">
+            <span className="text-Apricot">&lt;&gt;&nbsp;</span>
+            <span className="relative">
+              Turning Ideas Into Code
+              {/* <span className="absolute inset-x-0 bottom-0 border-b-4 border-Apricot"></span> */}
+            </span>
+            <span className="text-Apricot">&nbsp;&lt;/&gt;</span>
+          </h2>
+        </div>
+
         <h1 className="text-6xl font-extrabold leading-tight tracking-tight text-white">
           I<span className="text-Apricot">'</span>M
         </h1>

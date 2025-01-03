@@ -30,11 +30,14 @@ export default function About() {
             work and get in touch to learn more about my journey!
           </p>
           <a
-            href="#resume"
+            href="https://drive.google.com/uc?export=download&id=1KSkJTrgxNsM8TWiMvSZlM6TnjwEgtBU3"
             className="px-8 py-4 text-white font-semibold bg-Apricot hover:bg-Blueberry hover:text-white transition duration-300"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             DOWNLOAD RESUME
           </a>
+
         </div>
       </div>
     </div>

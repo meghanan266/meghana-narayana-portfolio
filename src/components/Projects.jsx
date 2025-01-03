@@ -1,33 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import navigation hook
+import { Link } from "react-router-dom";
 
 export default function Projects() {
-  const navigate = useNavigate(); // Initialize navigation hook
-
   const projects = [
     {
-      id: 1,
+      id: "e-commerce-application",
       name: "E-commerce Application",
-      image: "https://via.placeholder.com/300x400", // Replace with your actual image path
-      path: "/ecommerce-application", // Add route path for each project
+      image: "https://via.placeholder.com/300x400",
     },
     {
-      id: 2,
+      id: "image-processing-application",
       name: "Image Processing Application",
-      image: "https://via.placeholder.com/300x400", // Replace with your actual image path
-      path: "/image-processing",
+      image: "https://via.placeholder.com/300x400",
     },
     {
-      id: 3,
+      id: "portfolio-website",
       name: "Portfolio Website",
-      image: "https://via.placeholder.com/300x400", // Replace with your actual image path
-      path: "/portfolio-website",
+      image: "https://via.placeholder.com/300x400",
     },
     {
-      id: 4,
+      id: "food-donor",
       name: "Task Management System",
-      image: "https://via.placeholder.com/300x400", // Replace with your actual image path
-      path: "/task-management",
+      image: "https://via.placeholder.com/300x400",
     },
   ];
 
@@ -38,7 +32,7 @@ export default function Projects() {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
     }, 3000);
 
-    return () => clearInterval(interval); // Cleanup on component unmount
+    return () => clearInterval(interval);
   }, [projects.length]);
 
   const getSlideStyles = (index) => {
@@ -47,63 +41,56 @@ export default function Projects() {
 
     if (offset === 0) {
       return {
-        transform: "translateX(0%) scale(1.1) translateZ(150px)",
+        transform: "translateX(0%) scale(1.1)",
         zIndex: 10,
         opacity: 1,
       };
     } else if (offset === 1) {
       return {
-        transform: "translateX(110%) scale(0.9) translateZ(50px)",
+        transform: "translateX(110%) scale(0.9)",
         zIndex: 5,
         opacity: 0.8,
       };
     } else if (offset === totalSlides - 1) {
       return {
-        transform: "translateX(-110%) scale(0.9) translateZ(50px)",
+        transform: "translateX(-110%) scale(0.9)",
         zIndex: 5,
         opacity: 0.8,
       };
     } else {
       return {
-        transform: "translateX(200%) scale(0.7) translateZ(0px)",
+        transform: "translateX(200%) scale(0.7)",
         zIndex: 1,
         opacity: 0,
       };
     }
   };
 
-  const handleNavigation = (direction) => {
-    if (direction === "prev") {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === 0 ? projects.length - 1 : prevIndex - 1
-      );
-    } else {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
-    }
-  };
-
-  const handleProjectClick = (path) => {
-    navigate(path); // Navigate to the project details page
-  };
-
   return (
-    <section className="relative w-full h-[650px] bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white">
-      <div className="relative flex justify-center items-center h-full">
+    <section id="projects" className="relative w-full py-20 bg-gradient-to-b from-black via-gray-800 to-black text-white">
+      <h1 className="text-5xl font-extrabold text-center tracking-wide uppercase">
+        03 Projects
+      </h1>
+      <div className="relative flex justify-center items-center h-[600px]">
         {/* Left Arrow */}
         <button
-          onClick={() => handleNavigation("prev")}
+          onClick={() =>
+            setCurrentIndex(
+              (prevIndex) => (prevIndex - 1 + projects.length) % projects.length
+            )
+          }
           className="absolute left-6 z-20 bg-yellow-400 text-black rounded-full p-3 shadow-lg hover:bg-white hover:scale-110 transition-transform"
         >
           &#8592;
         </button>
 
         {/* Carousel */}
-        <div className="relative w-[80%] h-[500px] flex justify-center items-center overflow-hidden">
+        <div className="relative w-[90%] h-[450px] flex justify-center items-center overflow-hidden">
           {projects.map((project, index) => (
-            <div
+            <Link
+              to={`/project/${project.id}`}
               key={index}
-              onClick={() => handleProjectClick(project.path)} // Navigate on click
-              className={`absolute h-[450px] w-[320px] backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl rounded-xl overflow-hidden transition-transform duration-500 ease-in-out cursor-pointer ${index === currentIndex ? "hover:scale-110" : ""
+              className={`absolute h-[420px] w-[300px] bg-white/10 border border-white/20 shadow-xl rounded-xl overflow-hidden transition-transform duration-500 ease-in-out ${index === currentIndex ? "hover:scale-105" : ""
                 }`}
               style={getSlideStyles(index)}
             >
@@ -117,17 +104,16 @@ export default function Projects() {
               </div>
               <div className="text-center text-white p-4">
                 <h3 className="text-2xl font-bold">{project.name}</h3>
-                <p className="text-sm text-gray-300 mt-2">
-                  Click to explore this project.
-                </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
         {/* Right Arrow */}
         <button
-          onClick={() => handleNavigation("next")}
+          onClick={() =>
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length)
+          }
           className="absolute right-6 z-20 bg-yellow-400 text-black rounded-full p-3 shadow-lg hover:bg-white hover:scale-110 transition-transform"
         >
           &#8594;

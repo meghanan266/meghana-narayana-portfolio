@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import logo from '../assets/MN.png';
+import logo from '../assets/MN.png'; // Single logo image
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
@@ -45,16 +45,16 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'backdrop-blur-md bg-white/20 shadow-lg' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'backdrop-blur-md bg-white/40 shadow-lg' : 'bg-transparent'
         }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-6">
+      <div className="max-w-7xl mx-auto flex items-center justify-between py-2 px-6">
         {/* Logo */}
         <div className="flex-shrink-0">
           <img
             src={logo}
             alt="Logo"
-            className="h-12 w-auto rounded-full transition-transform hover:rotate-12 hover:scale-110"
+            className={`h-12 w-auto rounded-full transition-transform hover:rotate-12 hover:scale-110 ${isScrolled ? '' : 'filter invert brightness-200'}`}
           />
         </div>
 
@@ -66,7 +66,7 @@ export default function Navbar() {
                 href={item.href}
                 className={`relative tracking-wide uppercase transition duration-300 ${activeSection === item.section
                   ? 'text-Apricot font-bold after:w-full'
-                  : 'text-white/100 hover:text-Citrus'
+                  : 'text-white/100 hover:text-Apricot'
                   } after:block after:content-[""] after:absolute after:bottom-0 after:left-0 after:h-[3px] after:bg-Apricot after:transition-all after:duration-500`}
               >
                 {item.label}
