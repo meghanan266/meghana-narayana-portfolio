@@ -16,7 +16,7 @@ export default function ProjectDetails() {
 
     return (
         <div className="p-10 md:p-20 bg-gradient-to-b from-black via-gray-800 to-black text-white min-h-screen">
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-6xl mx-auto mt-10">
                 {/* Header Section */}
                 <h2 className="text-5xl font-extrabold mb-6 text-Apricot text-center">
                     {project.title}
@@ -45,16 +45,18 @@ export default function ProjectDetails() {
                 </div>
 
                 {/* GitHub Link */}
-                <div className="text-center mt-15 mb-20">
-                    <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-Apricot px-10 py-4 rounded-lg text-lg font-semibold hover:bg-AppleCore hover:text-white transition-all duration-300"
-                    >
-                        View Project on GitHub
-                    </a>
-                </div>
+                {project.link && (
+                    <div className="text-center mt-15 mb-20">
+                        <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-Apricot px-10 py-4 rounded-lg text-lg font-semibold hover:bg-AppleCore hover:text-white transition-all duration-300"
+                        >
+                            View Project
+                        </a>
+                    </div>
+                )}
 
 
                 {/* Key Features */}
@@ -71,20 +73,22 @@ export default function ProjectDetails() {
                 </div>
 
                 {/* Screenshots */}
-                <div className="mb-16">
-                    <h3 className="text-3xl font-semibold mb-6 text-Apricot">Screenshots</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        {project.screenshots.map((screenshot, idx) => (
-                            <div key={idx} className="relative overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-                                <img
-                                    src={screenshot}
-                                    alt={`Screenshot ${idx + 1}`}
-                                    className="w-full"
-                                />
-                            </div>
-                        ))}
+                {project.screenshots && (
+                    <div className="mb-16">
+                        <h3 className="text-3xl font-semibold mb-6 text-Apricot">Screenshots</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            {project.screenshots.map((screenshot, idx) => (
+                                <div key={idx} className="relative overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
+                                    <img
+                                        src={screenshot}
+                                        alt={`Screenshot ${idx + 1}`}
+                                        className="w-full"
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </div>
     );

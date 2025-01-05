@@ -3,11 +3,10 @@ import Confetti from 'react-confetti';
 
 function ContactForm() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
-    phone: '',
-    message: ''
+    message: '',
+    reason: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -16,6 +15,15 @@ function ContactForm() {
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
 
+  // Dynamic Greeting based on Time
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return "Good Morning!";
+    if (hour < 18) return "Good Afternoon!";
+    return "Good Evening!";
+  };
+
+  // Handle Screen Resize for Confetti
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
@@ -30,32 +38,28 @@ function ContactForm() {
     if (status === "success") {
       setShowSuccess(true);
       setTimeout(() => {
-        setShowSuccess(false);  // Hide the success message after 5 seconds
+        setShowSuccess(false);  // Hide after 5 seconds
       }, 5000);
     }
   }, [status]);
 
+  // Validation Logic
   const validate = () => {
     const newErrors = {};
-    if (!formData.firstName) newErrors.firstName = "First name is required.";
-    if (!formData.lastName) newErrors.lastName = "Last name is required.";
-    if (!formData.email) {
-      newErrors.email = "Email is required.";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Invalid email format.";
-    }
-    if (formData.phone && !/^\d{10}$/.test(formData.phone)) {
-      newErrors.phone = "Phone number must be 10 digits.";
-    }
-    if (!formData.message) newErrors.message = "Message cannot be empty.";
+    if (!formData.name) newErrors.name = "Please enter your name!";
+    if (!formData.email) newErrors.email = "Please provide your email.";
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email format is incorrect.";
+    if (!formData.message) newErrors.message = "Your message can’t be empty!";
     return newErrors;
   };
 
+  // Handle Input Changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Form Submission Logic
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
@@ -70,15 +74,13 @@ function ContactForm() {
     try {
       const response = await fetch('https://formspree.io/f/myzzbwpl', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
       if (response.ok) {
         setStatus("success");
-        setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '' });
+        setFormData({ name: '', email: '', message: '', reason: '' });
       } else {
         setStatus("error");
       }
@@ -89,88 +91,107 @@ function ContactForm() {
 
   return (
     <section id="contact" className="relative py-24 bg-gradient-to-b from-black via-gray-800 to-black text-white">
-      {/* Confetti effect */}
+      {/* Confetti Effect */}
       {showSuccess && <Confetti width={width} height={height} />}
 
       <div className="max-w-6xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-12">
         <div>
-          <h2 className="text-3xl font-bold mb-6 text-Apricot">Contact</h2>
+          <h2 className="text-3xl font-bold mb-6 text-Apricot">{getGreeting()} Let's Chat! 👋</h2>
           <p className="text-gray-300 mb-6">
-            Feel free to reach out to me by filling out the form or using the details below.
+            I’m looking for <b>new opportunities</b>  to learn, explore, and get my hands dirty in real-world projects . If you’ve got something on your mind, don’t hesitate to reach out!
           </p>
-          <p className="text-gray-300 mb-2">info@mysite.com</p>
-          <p className="text-gray-300 mb-8">Tel: 1-800-000-0000</p>
+          <p className="text-gray-300 mb-6">
+            I’m all about <b>learning through doing</b>, and I’m excited to see where we can go from here.
+          </p>
+          <p className="text-gray-300 mb-4">
+            📧 Email me at: <a href="mailto:meghananarayana55@gmail.com" className="text-Apricot">meghananarayana55@gmail.com</a>
+          </p>
+          <p className="text-gray-300 mb-4">
+            📞 Give me a call: <span className="text-Apricot">1-857-381-5964</span>
+          </p>
+          <p className="text-gray-300 mb-4">
+            💬 Let’s connect:
+            <a href="https://www.linkedin.com/in/meghananarayana/" target="_blank" className="text-Apricot hover:text-white"> LinkedIn</a> |
+            <a href="https://github.com/meghanan266" target="_blank" className="text-Apricot hover:text-white"> GitHub</a>
+          </p>
+          <p className="text-gray-300 mb-8">
+            Looking forward to hearing from you and learning something new along the way! 🌱
+          </p>
         </div>
-
+        {/* Contact Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold mb-2" htmlFor="firstName">First Name *</label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                className="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-Apricot"
-              />
-              {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName}</p>}
-            </div>
-            <div>
-              <label className="block text-sm font-semibold mb-2" htmlFor="lastName">Last Name *</label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-Apricot"
-              />
-              {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName}</p>}
-            </div>
-          </div>
+          {/* Reason Dropdown */}
           <div>
-            <label className="block text-sm font-semibold mb-2" htmlFor="email">Email *</label>
+            <label htmlFor="reason" className="text-sm font-semibold mb-2">What brings you here? *</label>
+            <select
+              id="reason"
+              name="reason"
+              value={formData.reason}
+              onChange={handleChange}
+              className="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-Apricot"
+            >
+              <option value="">Select a Reason</option>
+              <option value="Job Inquiry">Job Inquiry</option>
+              <option value="Collaboration">Collaboration</option>
+              <option value="General Question">General Question</option>
+            </select>
+            {errors.reason && <p className="text-red-500 text-sm">{errors.reason}</p>}
+          </div>
+
+          {/* Name Field */}
+          <div>
+            <label htmlFor="name" className="text-sm font-semibold mb-2">Your Name *</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-Apricot"
+              placeholder="Your Full Name"
+            />
+            {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+          </div>
+
+          {/* Email Field */}
+          <div>
+            <label htmlFor="email" className="text-sm font-semibold mb-2">Your Email *</label>
             <input
               type="email"
               id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
+              required
               className="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-Apricot"
+              placeholder="Your Email Address"
             />
             {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
           </div>
+
+          {/* Message Field */}
           <div>
-            <label className="block text-sm font-semibold mb-2" htmlFor="phone">Phone</label>
-            <input
-              type="text"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              className="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-Apricot"
-            />
-            {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
-          </div>
-          <div>
-            <label className="block text-sm font-semibold mb-2" htmlFor="message">Message *</label>
+            <label htmlFor="message" className="text-sm font-semibold mb-2">Message *</label>
             <textarea
               id="message"
               name="message"
-              rows="4"
               value={formData.message}
               onChange={handleChange}
+              required
+              rows="4"
               className="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-Apricot"
-            ></textarea>
+              placeholder="Let me know how I can assist you"
+            />
             {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-Apricot text-black font-semibold py-3 rounded hover:bg-Apricot/80 hover:text-white transition duration-300"
           >
-            {status === "loading" ? "Sending..." : "Send"}
+            {status === "loading" ? "Sending..." : "Start a conversation!"}
           </button>
 
           {/* Success Message */}
@@ -181,7 +202,7 @@ function ContactForm() {
                   <span role="img" aria-label="celebration" className="text-lg">🎉</span>
                 </div>
                 <p className="font-medium text-lg text-white">
-                  Happy to connect with you! I'll be in touch with you shortly.💬
+                  Thanks for reaching out! I’ll get back to you as soon as I can. 💬
                 </p>
               </div>
             </div>
