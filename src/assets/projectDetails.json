@@ -1,50 +1,66 @@
 {
   "e-commerce-application": {
     "title": "E-commerce Application",
-    "description": "Built a scalable e-commerce platform using Angular and .NET (C#). Implemented JWT authentication with guards and interceptors, integrated Razorpay for payments, and designed a responsive UI with Bootstrap.",
+    "description": "Developed a highly scalable and secure e-commerce platform using Angular and .NET Core (C#). Implemented JWT authentication with guards and interceptors, integrated Razorpay for payments, and designed a responsive UI optimized for both desktop and mobile using Bootstrap. Utilized Entity Framework for efficient ORM to manage database interactions.",
     "technologies": [
       "Angular",
-      ".NET (C#)",
+      ".NET Core (C#)",
+      "Azure",
       "JWT Authentication",
       "Razorpay",
-      "Bootstrap"
+      "Bootstrap",
+      "SQL",
+      "GitHub",
+      "Vercel",
+      "Entity Framework"
     ],
     "keyFeatures": [
-      "Secure authentication with JWT and role-based access",
-      "Payment integration using Razorpay",
-      "Dynamic admin dashboard for product management",
-      "Optimized for mobile and desktop with responsive design",
-      "Microservices for scalability and faster deployments"
+      "Developed secure JWT authentication with role-based access for a safe user experience",
+      "Integrated Razorpay for seamless payment processing and session security",
+      "Created a dynamic admin dashboard to simplify product and order management",
+      "Designed a responsive, mobile-first UI using Bootstrap, ensuring accessibility across devices",
+      "Deployed on Azure with SQL Database for scalability and reliability",
+      "Cart functionality for adding, updating, and removing items",
+      "Version control using GitHub",
+      "Database management using Entity Framework for seamless ORM operations"
     ],
     "screenshots": [
-      "/src/assets/ecommerce-1.png",
-      "/src/assets/ecommerce-2.png"
+      "/src/assets/ecomm-1.png",
+      "/src/assets/ecomm-2.png",
+      "/src/assets/ecomm-3.png",
+      "/src/assets/ecomm-4.png"
     ],
     "techStackIcons": [
       "/src/assets/angular-logo.png",
       "/src/assets/dotnet-logo.png",
+      "/src/assets/azure-logo.jpg",
       "/src/assets/jwt-logo.png",
       "/src/assets/razorpay-logo.png",
-      "/src/assets/bootstrap-logo.jpg"
+      "/src/assets/bootstrap-logo.jpg",
+      "/src/assets/sql-logo.jpg",
+      "/src/assets/github.png",
+      "/src/assets/vercel-logo.png"
     ],
-    "link": "https://github.com/yourrepo/e-commerce-application"
+    "link": "https://www.theverdantnature.com/"
   },
   "image-processing-application": {
     "title": "Image Processing Application",
-    "description": "Developed a Java-based application for advanced image manipulation, including filtering, color transformations, and histogram generation. The app supports GUI (Swing) and CLI workflows.",
+    "description": "Designed and implemented a robust Java-based application for advanced image processing. The project showcases proficiency in software design patterns, modular architecture, and testing practices. It includes both a user-friendly GUI built with Swing and a flexible command-line interface for advanced scripting.",
     "technologies": [
       "Java",
       "Swing",
+      "JUnit Testing",
       "MVC Architecture",
-      "OOP",
-      "JUnit Testing"
+      "Object-Oriented Programming (OOP)",
+      "Design Patterns",
+      "Command-Line Interface (CLI)"
     ],
     "keyFeatures": [
-      "Advanced image filtering and transformations",
+      "Modular design using MVC architecture and SOLID principles for maintainability and scalability",
       "Support for GUI (Swing) and CLI workflows",
-      "Histogram generation and analysis",
-      "Modular code with MVC architecture",
-      "Unit tested with JUnit for high reliability"
+      "Advanced image processing capabilities: filtering, transformations, histogram generation, image splitting/combination",
+      "Applied TDD (Test-Driven Development) methodologies with JUnit ensuring reliability and robust error handling",
+      "Clean and reusable code leveraging OOP principles and design patterns"
     ],
     "screenshots": [
       "/src/assets/img-process-1.png",
@@ -52,10 +68,9 @@
     ],
     "techStackIcons": [
       "/src/assets/java-logo.png",
-      "/src/assets/swing-logo.png",
+      "/src/assets/swing-logo.jpg",
       "/src/assets/junit-logo.png"
-    ],
-    "link": "https://github.com/yourrepo/image-processing-application"
+    ]
   },
   "portfolio-website": {
     "title": "Portfolio Website",
@@ -72,15 +87,39 @@
       "Interactive elements and modern design",
       "Lightweight and optimized performance"
     ],
-    "screenshots": [
-      "/src/assets/portfolio-1.png",
-      "/src/assets/portfolio-2.png"
-    ],
     "techStackIcons": [
       "/src/assets/react-logo.png",
       "/src/assets/tailwind-logo.jpg",
       "/src/assets/js-logo.png"
     ],
-    "link": "https://github.com/yourrepo/portfolio-website"
+    "link": "https://github.com/meghanan266/my-portfolio"
+  },
+  "food-donation": {
+    "title": "Food Bridge Application",
+    "description": "Designed and developed a full-stack web application to reduce food waste by connecting donors with surplus food to recipients in need. Built with Angular, Flask, and MySQL, it features a responsive user interface, secure APIs, and database management, with a focus on societal impact and technical excellence.",
+    "technologies": [
+      "Angular",
+      "Flask",
+      "MySQL",
+      "Python"
+    ],
+    "keyFeatures": [
+      "Designed and developed a responsive frontend using Angular and Angular Material.",
+      "Built RESTful APIs with Flask for efficient data exchange and integration with MySQL.",
+      "Implemented a normalized MySQL database schema with triggers, stored procedures, and event scheduling.",
+      "Developed automated tasks to manage food post expirations and donor reward updates."
+    ],
+    "screenshots": [
+      "/src/assets/food-1.png",
+      "/src/assets/food-2.png",
+      "/src/assets/food-3.png",
+      "/src/assets/food-4.png"
+    ],
+    "techStackIcons": [
+      "/src/assets/angular-logo.png",
+      "/src/assets/flask-logo.png",
+      "/src/assets/mysql-logo.png",
+      "/src/assets/python-logo.jpg"
+    ]
   }
 }

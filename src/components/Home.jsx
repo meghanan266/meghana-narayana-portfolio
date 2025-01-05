@@ -39,7 +39,7 @@ export default function Home() {
           href="#contact"
           className="mt-8 inline-block bg-Apricot text-white font-semibold px-8 py-4 rounded-full hover:bg-Apricot hover:text-Blueberry transition duration-300 ease-in-out transform hover:scale-105"
         >
-          Get in Touch
+          Start a conversation!
         </a>
       </div>
 

@@ -6,22 +6,22 @@ export default function Projects() {
     {
       id: "e-commerce-application",
       name: "E-commerce Application",
-      image: "https://via.placeholder.com/300x400",
+      image: "/src/assets/ecomm-1.png",
     },
     {
       id: "image-processing-application",
       name: "Image Processing Application",
-      image: "https://via.placeholder.com/300x400",
+      image: "/src/assets/img-process-1.png",
     },
     {
       id: "portfolio-website",
       name: "Portfolio Website",
-      image: "https://via.placeholder.com/300x400",
+      image: "/src/assets/portfolio.png",
     },
     {
-      id: "food-donor",
-      name: "Task Management System",
-      image: "https://via.placeholder.com/300x400",
+      id: "food-donation",
+      name: "Food Bridge Application",
+      image: "/src/assets/food-1.png",
     },
   ];
 
@@ -67,7 +67,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="relative w-full py-20 bg-gradient-to-b from-black via-gray-800 to-black text-white">
+    <section id="projects" className="relative w-full py-10 bg-gradient-to-b from-black via-gray-800 to-black text-white">
       <h1 className="text-5xl font-extrabold text-center tracking-wide uppercase">
         03 Projects
       </h1>
@@ -79,7 +79,7 @@ export default function Projects() {
               (prevIndex) => (prevIndex - 1 + projects.length) % projects.length
             )
           }
-          className="absolute left-6 z-20 bg-yellow-400 text-black rounded-full p-3 shadow-lg hover:bg-white hover:scale-110 transition-transform"
+          className="absolute left-6 z-20 bg-Apricot text-black rounded-full p-3 shadow-lg hover:bg-white hover:scale-110 transition-transform"
         >
           &#8592;
         </button>
@@ -114,14 +114,14 @@ export default function Projects() {
           onClick={() =>
             setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length)
           }
-          className="absolute right-6 z-20 bg-yellow-400 text-black rounded-full p-3 shadow-lg hover:bg-white hover:scale-110 transition-transform"
+          className="absolute right-6 z-20 bg-Apricot text-black rounded-full p-3 shadow-lg hover:bg-white hover:scale-110 transition-transform"
         >
           &#8594;
         </button>
       </div>
 
       {/* Pagination */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-yellow-400 text-lg font-semibold">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-Apricot text-lg font-semibold">
         {currentIndex + 1} / {projects.length}
       </div>
     </section>
