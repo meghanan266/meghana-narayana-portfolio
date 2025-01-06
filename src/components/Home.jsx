@@ -3,13 +3,12 @@ import Projects from './Projects.jsx';
 import Skills from './Skills.jsx';
 import ContactForm from './ContactForm.jsx';
 import Experience from './Experience.jsx';
-import bgImage from '../../public/assets/bg-pic.png';
 
 export default function Home() {
   return (
     <div
       className="relative w-full h-screen bg-cover bg-right text-white"
-      style={{ backgroundImage: `url(${bgImage})` }}
+      style={{ backgroundImage: 'url(/assets/bg-pic.png)' }}
     >
       <div className="absolute inset-0 bg-black opacity-50"></div>
 

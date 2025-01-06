@@ -1,14 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import projectDetails from '../../public/assets/projectDetails.json';
 
 export default function ProjectDetails() {
     const { projectId } = useParams();
+    const [project, setProject] = useState(null);
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
-    const project = projectDetails[projectId];
+
+    useEffect(() => {
+        fetch('/assets/projectDetails.json') 
+            .then((response) => response.json())
+            .then((data) => {
+                setProject(data[projectId]);
+            })
+            .catch((error) => console.error('Error fetching project details:', error));
+
+        window.scrollTo(0, 0);
+    }, [projectId]);
 
     if (!project) {
         return <div className="text-center py-20 text-2xl">Project not found.</div>;
