@@ -3,7 +3,7 @@ import Projects from './Projects.jsx';
 import Skills from './Skills.jsx';
 import ContactForm from './ContactForm.jsx';
 import Experience from './Experience.jsx';
-import bgImage from '../assets/bg-pic.png'; // Import background image if needed
+import bgImage from '../../public/assets/bg-pic.png';
 
 export default function Home() {
   return (

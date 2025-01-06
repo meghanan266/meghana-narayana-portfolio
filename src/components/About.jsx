@@ -4,7 +4,7 @@ export default function About() {
       id="about"
       className="relative w-full h-screen bg-cover bg-center bg-fixed"
       style={{
-        backgroundImage: "url(src/assets/bg-1.png)", // Replace with your background image path
+        backgroundImage: "url(public/assets/bg-1.png)", // Replace with your background image path
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -17,7 +17,7 @@ export default function About() {
         <div className="bg-AppleCore p-12 shadow-xl text-center max-w-3xl w-full h-[80vh] flex flex-col items-center justify-between bg-opacity-95">
           <div className="w-28 h-28 mb-6">
             <img
-              src="src/assets/MN.png"
+              src="public/assets/MN.png"
               alt="Logo"
               className="w-full h-full object-cover rounded-full"
             />

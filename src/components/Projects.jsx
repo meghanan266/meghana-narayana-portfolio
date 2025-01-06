@@ -6,22 +6,22 @@ export default function Projects() {
     {
       id: "e-commerce-application",
       name: "E-commerce Application",
-      image: "/src/assets/ecomm-1.png",
+      image: "/assets/ecomm-1.png",
     },
     {
       id: "image-processing-application",
       name: "Image Processing Application",
-      image: "/src/assets/img-process-1.png",
+      image: "/assets/img-process-1.png",
     },
     {
       id: "portfolio-website",
       name: "Portfolio Website",
-      image: "/src/assets/portfolio.png",
+      image: "/assets/portfolio.png",
     },
     {
       id: "food-donation",
       name: "Food Bridge Application",
-      image: "/src/assets/food-1.png",
+      image: "/assets/food-1.png",
     },
   ];
 

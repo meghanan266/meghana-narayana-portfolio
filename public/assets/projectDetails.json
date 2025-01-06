@@ -25,21 +25,21 @@
       "Database management using Entity Framework for seamless ORM operations"
     ],
     "screenshots": [
-      "/src/assets/ecomm-1.png",
-      "/src/assets/ecomm-2.png",
-      "/src/assets/ecomm-3.png",
-      "/src/assets/ecomm-4.png"
+      "/public/assets/ecomm-1.png",
+      "/public/assets/ecomm-2.png",
+      "/public/assets/ecomm-3.png",
+      "/public/assets/ecomm-4.png"
     ],
     "techStackIcons": [
-      "/src/assets/angular-logo.png",
-      "/src/assets/dotnet-logo.png",
-      "/src/assets/azure-logo.jpg",
-      "/src/assets/jwt-logo.png",
-      "/src/assets/razorpay-logo.png",
-      "/src/assets/bootstrap-logo.jpg",
-      "/src/assets/sql-logo.jpg",
-      "/src/assets/github.png",
-      "/src/assets/vercel-logo.png"
+      "/public/assets/angular-logo.png",
+      "/public/assets/dotnet-logo.png",
+      "/public/assets/azure-logo.jpg",
+      "/public/assets/jwt-logo.png",
+      "/public/assets/razorpay-logo.png",
+      "/public/assets/bootstrap-logo.jpg",
+      "/public/assets/sql-logo.jpg",
+      "/public/assets/github.png",
+      "/public/assets/vercel-logo.png"
     ],
     "link": "https://www.theverdantnature.com/"
   },
@@ -63,13 +63,13 @@
       "Clean and reusable code leveraging OOP principles and design patterns"
     ],
     "screenshots": [
-      "/src/assets/img-process-1.png",
-      "/src/assets/img-process-2.png"
+      "/public/assets/img-process-1.png",
+      "/public/assets/img-process-2.png"
     ],
     "techStackIcons": [
-      "/src/assets/java-logo.png",
-      "/src/assets/swing-logo.jpg",
-      "/src/assets/junit-logo.png"
+      "/public/assets/java-logo.png",
+      "/public/assets/swing-logo.jpg",
+      "/public/assets/junit-logo.png"
     ]
   },
   "portfolio-website": {
@@ -88,9 +88,9 @@
       "Lightweight and optimized performance"
     ],
     "techStackIcons": [
-      "/src/assets/react-logo.png",
-      "/src/assets/tailwind-logo.jpg",
-      "/src/assets/js-logo.png"
+      "/public/assets/react-logo.png",
+      "/public/assets/tailwind-logo.jpg",
+      "/public/assets/js-logo.png"
     ],
     "link": "https://github.com/meghanan266/my-portfolio"
   },
@@ -110,16 +110,16 @@
       "Developed automated tasks to manage food post expirations and donor reward updates."
     ],
     "screenshots": [
-      "/src/assets/food-1.png",
-      "/src/assets/food-2.png",
-      "/src/assets/food-3.png",
-      "/src/assets/food-4.png"
+      "/public/assets/food-1.png",
+      "/public/assets/food-2.png",
+      "/public/assets/food-3.png",
+      "/public/assets/food-4.png"
     ],
     "techStackIcons": [
-      "/src/assets/angular-logo.png",
-      "/src/assets/flask-logo.png",
-      "/src/assets/mysql-logo.png",
-      "/src/assets/python-logo.jpg"
+      "/public/assets/angular-logo.png",
+      "/public/assets/flask-logo.png",
+      "/public/assets/mysql-logo.png",
+      "/public/assets/python-logo.jpg"
     ]
   }
 }
