@@ -74,25 +74,36 @@
   },
   "portfolio-website": {
     "title": "Portfolio Website",
-    "description": "Created a personal portfolio website using React and Tailwind CSS to showcase skills, projects, and achievements. The site features smooth navigation, responsive design, and interactive elements.",
+    "description": "Developed a modern, interactive portfolio website using React and Tailwind CSS, optimized with Vite for efficient builds and fast development. This project showcases a deep understanding of frontend development, component-based architecture, and responsive design.",
     "technologies": [
       "React",
       "Tailwind CSS",
-      "JavaScript"
+      "Vite",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "GitHub",
+      "Vercel"
     ],
     "keyFeatures": [
-      "Responsive design for all devices",
-      "Dynamic project sections with React Router",
-      "Fast and smooth navigation",
-      "Interactive elements and modern design",
-      "Lightweight and optimized performance"
+      "Developed modular and reusable components in React for a scalable frontend architecture",
+      "Implemented dynamic routing using React Router for seamless navigation across multiple pages",
+      "Managed state and side effects efficiently with React's useState and useEffect hooks",
+      "Designed and implemented a responsive UI using Tailwind CSS, ensuring cross-device compatibility",
+      "Integrated a functional contact form with validation for collecting user inquiries",
+      "Hosted and deployed the application on Vercel with continuous integration from GitHub"
     ],
     "techStackIcons": [
       "/assets/react-logo.png",
       "/assets/tailwind-logo.jpg",
-      "/assets/js-logo.png"
+      "/assets/vite-logo.jpg",
+      "/assets/javascript-logo.png",
+      "/assets/html-logo.png",
+      "/assets/css-logo.png",
+      "/assets/github.png",
+      "/assets/vercel-logo.png"
     ],
-    "link": "https://github.com/meghanan266/my-portfolio"
+    "link": "https://meghana-narayana-portfolio.vercel.app/"
   },
   "food-donation": {
     "title": "Food Bridge Application",
