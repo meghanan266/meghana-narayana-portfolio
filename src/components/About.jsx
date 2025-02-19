@@ -33,7 +33,7 @@ export default function About() {
             I’m currently pursuing a Master’s in Computer Science at Northeastern University and seeking opportunities to bring my skills to a team that values collaboration and continuous growth, where I can contribute meaningfully and keep learning along the way.
           </p>
           <a
-            href="https://drive.google.com/uc?export=download&id=1KSkJTrgxNsM8TWiMvSZlM6TnjwEgtBU3"
+            href="https://drive.google.com/uc?export=download&id=1WLWWBkJ4e7nmR_VgW20BaNqY2FtiG2ON"
             className="px-6 sm:px-8 py-3 sm:py-4 text-white font-semibold bg-Apricot hover:bg-Blueberry hover:text-white transition duration-300"
             target="_blank"
             rel="noopener noreferrer"
