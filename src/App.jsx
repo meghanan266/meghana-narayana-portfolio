@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar.jsx';
 import Home from './components/Home.jsx';
-
+import { Analytics } from '@vercel/analytics/react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Routes
 import ProjectDetails from './components/ProjectDetails.jsx';
 
@@ -17,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/project/:projectId" element={<ProjectDetails />} />
         </Routes>
+        <Analytics />
       </div>
     </Router>
   );
