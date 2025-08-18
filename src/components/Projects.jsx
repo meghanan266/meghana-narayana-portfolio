@@ -5,7 +5,7 @@ export default function Projects() {
   const projects = [
     {
       id: "e-commerce-application",
-      name: "E-commerce Application",
+      name: "Verdant Online Store",
       image: "/assets/ecomm-1.png",
     },
     {
@@ -22,6 +22,11 @@ export default function Projects() {
       id: "food-donation",
       name: "Food Bridge Application",
       image: "/assets/food-1.png",
+    },
+    {
+      id: "career-link",
+      name: "Career Link Application",
+      image: "/assets/career-1.png",
     },
   ];
 

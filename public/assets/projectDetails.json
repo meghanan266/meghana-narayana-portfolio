@@ -1,6 +1,6 @@
 {
   "e-commerce-application": {
-    "title": "E-commerce Application",
+    "title": "Verdant Online Store",
     "description": "Developed a highly scalable and secure e-commerce platform using Angular and .NET Core (C#). Implemented JWT authentication with guards and interceptors, integrated Razorpay for payments, and designed a responsive UI optimized for both desktop and mobile using Bootstrap. Utilized Entity Framework for efficient ORM to manage database interactions.",
     "technologies": [
       "Angular",
@@ -9,7 +9,7 @@
       "JWT Authentication",
       "Razorpay",
       "Bootstrap",
-      "SQL",
+      "SQL Server",
       "GitHub",
       "Vercel",
       "Entity Framework"
@@ -33,15 +33,15 @@
     "techStackIcons": [
       "/assets/angular-logo.png",
       "/assets/dotnet-logo.png",
-      "/assets/azure-logo.jpg",
+      "/assets/azure-logo.png",
       "/assets/jwt-logo.png",
       "/assets/razorpay-logo.png",
-      "/assets/bootstrap-logo.jpg",
-      "/assets/sql-logo.jpg",
+      "/assets/bootstrap-logo.png",
+      "/assets/sql-logo.png",
       "/assets/github.png",
       "/assets/vercel-logo.png"
     ],
-    "link": "https://www.theverdantnature.com/"
+    "link": "https://github.com/meghanan266/Verdant-online-store"
   },
   "image-processing-application": {
     "title": "Image Processing Application",
@@ -132,5 +132,48 @@
       "/assets/mysql-logo.png",
       "/assets/python-logo.jpg"
     ]
+  },
+  "career-link": {
+    "title": "CareerLink Web Application",
+    "description": "CareerLink is a full-stack platform designed to streamline job searches and employer outreach. It offers secure, role-based access for employers and job seekers, advanced job filtering, and AI-driven resume feedback using Google’s Gemini API. Built for performance, clarity, and scale.",
+    "technologies": [
+      "React.js",
+      "Material UI",
+      "Node.js",
+      "Express.js",
+      "PostgreSQL",
+      "Prisma",
+      "Google AI Studio API",
+      "Cloudinary",
+      "JavaScript",
+      "Vercel"
+    ],
+    "keyFeatures": [
+      "Implemented token-based authentication with HTTP-only cookies for secure user sessions",
+      "Designed Role-Based Access Control (RBAC) for employers (job posting dashboard) and job seekers (application tracking)",
+      "Built advanced job filtering by location, salary range, and skills using dynamic query logic",
+      "Integrated Google AI Studio (Gemini 2.0 Flash) for AI-powered resume analysis and feedback generation",
+      "Configured secure resume upload and storage via Cloudinary for fast access and retrieval",
+      "Developed RESTful APIs using Node.js and Express, and managed relational data with PostgreSQL and Prisma ORM",
+      "Deployed the frontend on Vercel with CI/CD from GitHub for a seamless DevOps workflow"
+    ],
+    "techStackIcons": [
+      "/assets/react-logo.png",
+      "/assets/material.png",
+      "/assets/node-js.png",
+      "/assets/express.png",
+      "/assets/Postgresql.png",
+      "/assets/prisma.png",
+      "/assets/Google_ai_studio_logo.png",
+      "/assets/Cloudinary.jpg",
+      "/assets/javascript-logo.png"
+    ],
+    "screenshots": [
+      "/assets/career-1.png",
+      "/assets/career-2.png",
+      "/assets/career-3.png",
+      "/assets/career-4.png"
+    ],
+    "link": "https://github.com/NEU-CS5610-2025-ONL-SPRING/final-project-part-2-career-link"
   }
 }

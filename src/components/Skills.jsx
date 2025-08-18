@@ -1,10 +1,35 @@
 export default function Skills() {
   const skills = {
     Languages: ["C#", "TypeScript", "JavaScript", "SQL", "Java", "Python", "C", "C++"],
-    Frontend: ["Angular", "React", "HTML", "CSS", "Bootstrap", "Tailwind CSS"],
-    Backend: [".NET Core", "Entity Framework Core", "RESTful APIs", "LINQ", "Flask"],
-    Tools: ["Git", "GitHub", "GitLab", "SonarQube", "SQL Server", "MySQL", "JIRA", "Agile"],
+    Frontend: ["Angular", "React", "HTML", "CSS", "Tailwind", "D3", "Bootstrap", "Kendo UI"],
+    Backend: [
+      ".NET Core",
+      "Entity Framework Core",
+      "Node.js",
+      "Express",
+      "RESTful APIs",
+      "LINQ",
+      "Flask",
+      "JWT",
+    ],
+    Tools: [
+      "Git",
+      "GitHub",
+      "GitLab",
+      "SonarQube",
+      "SQL Server",
+      "MySQL",
+      "Postman",
+      "Swagger",
+      "JIRA",
+      "Agile",
+      "Serilog",
+      "Azure",
+      "Vercel",
+      "Selenium",
+    ]
   };
+  
 
   return (
     <section id="skills" className="py-20 bg-gradient-to-b from-black via-gray-800 to-black text-white">
