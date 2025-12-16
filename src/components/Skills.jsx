@@ -1,34 +1,60 @@
 export default function Skills() {
   const skills = {
-    Languages: ["C#", "TypeScript", "JavaScript", "SQL", "Java", "Python", "C", "C++"],
-    Frontend: ["Angular", "React", "HTML", "CSS", "Tailwind", "D3", "Bootstrap", "Kendo UI"],
-    Backend: [
+    Languages: [
+      "C#",
+      "TypeScript",
+      "JavaScript",
+      "SQL",
+      "Java",
+      "Python",
+      "Go"
+    ],
+
+    Frontend: [
+      "Angular",
+      "React",
+      "HTML",
+      "CSS",
+      "Tailwind CSS",
+      "Bootstrap",
+      "D3.js",
+      "Kendo UI",
+    ],
+
+    "Backend And Databases": [
       ".NET Core",
       "Entity Framework Core",
       "Node.js",
       "Express",
+      "Flask",
       "RESTful APIs",
       "LINQ",
-      "Flask",
       "JWT",
+      "SQL Server",
+      "MySQL",
     ],
-    Tools: [
+
+    "Cloud And Tools": [
+      "Azure",
+      "AWS",
+      "Vercel",
+      "Docker",
+      "Terraform",
       "Git",
       "GitHub",
       "GitLab",
-      "SonarQube",
-      "SQL Server",
-      "MySQL",
       "Postman",
       "Swagger",
-      "JIRA",
-      "Agile",
+      "Jest",
+      "JUnit",
+      "SonarQube",
       "Serilog",
-      "Azure",
-      "Vercel",
       "Selenium",
-    ]
+      "Agile",
+      "JIRA",
+    ],
   };
+
   
 
   return (

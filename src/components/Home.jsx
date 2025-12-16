@@ -32,7 +32,7 @@ export default function Home() {
         </h1>
 
         <p className="mt-6 text-xl md:text-2xl text-AppleCore max-w-2xl">
-          Software Developer | .NET | Angular | React | SQL | Azure
+          .NET | Node.js | Angular | React | SQL | AWS
         </p>
         <a
           href="#contact"

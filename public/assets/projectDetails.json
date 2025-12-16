@@ -25,10 +25,10 @@
       "Database management using Entity Framework for seamless ORM operations"
     ],
     "screenshots": [
-      "/assets/ecomm-1.png",
-      "/assets/ecomm-2.png",
-      "/assets/ecomm-3.png",
-      "/assets/ecomm-4.png"
+      "/assets/verdant/ecomm-1.png",
+      "/assets/verdant/ecomm-2.png",
+      "/assets/verdant/ecomm-3.png",
+      "/assets/verdant/ecomm-4.png"
     ],
     "techStackIcons": [
       "/assets/angular-logo.png",
@@ -63,8 +63,8 @@
       "Clean and reusable code leveraging OOP principles and design patterns"
     ],
     "screenshots": [
-      "/assets/img-process-1.png",
-      "/assets/img-process-2.png"
+      "/assets/image-process/img-process-1.png",
+      "/assets/image-process/img-process-2.png"
     ],
     "techStackIcons": [
       "/assets/java-logo.png",
@@ -121,21 +121,22 @@
       "Developed automated tasks to manage food post expirations and donor reward updates."
     ],
     "screenshots": [
-      "/assets/food-1.png",
-      "/assets/food-2.png",
-      "/assets/food-3.png",
-      "/assets/food-4.png"
+      "/assets/food-bridge/food-1.png",
+      "/assets/food-bridge/food-2.png",
+      "/assets/food-bridge/food-3.png",
+      "/assets/food-bridge/food-4.png"
     ],
     "techStackIcons": [
       "/assets/angular-logo.png",
       "/assets/flask-logo.png",
       "/assets/mysql-logo.png",
       "/assets/python-logo.jpg"
-    ]
+    ],
+    "link": "https://github.com/meghanan266/Food-donation"
   },
   "career-link": {
     "title": "CareerLink Web Application",
-    "description": "CareerLink is a full-stack platform designed to streamline job searches and employer outreach. It offers secure, role-based access for employers and job seekers, advanced job filtering, and AI-driven resume feedback using Google’s Gemini API. Built for performance, clarity, and scale.",
+    "description": "CareerLink is a full-stack platform designed to streamline job searches and employer outreach. It offers secure, role-based access for employers and job seekers, advanced job filtering, and AI-driven resume feedback using Google's Gemini API. Built for performance, clarity, and scale.",
     "technologies": [
       "React.js",
       "Material UI",
@@ -169,11 +170,50 @@
       "/assets/javascript-logo.png"
     ],
     "screenshots": [
-      "/assets/career-1.png",
-      "/assets/career-2.png",
-      "/assets/career-3.png",
-      "/assets/career-4.png"
+      "/assets/career-link/career-1.png",
+      "/assets/career-link/career-2.png",
+      "/assets/career-link/career-3.png",
+      "/assets/career-link/career-4.png"
     ],
-    "link": "https://github.com/NEU-CS5610-2025-ONL-SPRING/final-project-part-2-career-link"
+    "link": "https://github.com/meghanan266/career-link"
+  },
+  "reddit-ml-sentiment-analysis": {
+    "title": "Social Media Sentiment Analysis",
+    "description": "Analyzed over a decade of discourse evolution in the MachineLearning subreddit, tracking the rise of deep learning, sentiment trends, and community growth from 2009 to 2020. Built a comprehensive data science pipeline with NLP preprocessing, VADER sentiment analysis, SQLite database storage, and Facebook Prophet forecasting. Features an interactive Streamlit dashboard for exploring 42 tracked ML terms and visualizing trends.",
+    "technologies": [
+      "Python",
+      "pandas",
+      "Prophet",
+      "Streamlit",
+      "SQLite",
+      "Matplotlib",
+      "GitHub"
+    ],
+    "keyFeatures": [
+      "Processed 300,000+ Reddit posts and comments from 2009-2020 using advanced NLP techniques (tokenization, lemmatization, stopword removal)",
+      "Tracked 42 ML terms across 5 categories (models, architectures, frameworks, techniques, application areas) with automated term extraction",
+      "Implemented VADER sentiment analysis achieving 82% accuracy on manually labeled test set, analyzing sentiment trends over 11 years",
+      "Built modular pipeline using MVC architecture with separate modules for preprocessing, sentiment analysis, database operations, and forecasting",
+      "Designed and implemented SQLite database with normalized schema for efficient querying and data retrieval",
+      "Developed Facebook Prophet forecasting models generating 24-month predictions with confidence intervals for ML term adoption and sentiment trends",
+      "Created interactive Streamlit dashboard with 7 sections including data exploration, ML terms analysis, sentiment visualization, and forecasting charts",
+      "Identified key insights: Deep Learning grew 890%, Transformer adoption increased 2000%, PyTorch overtook TensorFlow by 2019"
+    ],
+    "screenshots": [
+      "/assets/sentiment-analysis/reddit-ml-1.png",
+      "/assets/sentiment-analysis/reddit-ml-2.png",
+      "/assets/sentiment-analysis/reddit-ml-3.png",
+      "/assets/sentiment-analysis/reddit-ml-4.png"
+    ],
+    "techStackIcons": [
+      "/assets/python-logo.jpg",
+      "/assets/pandas.png",
+      "/assets/prophet.png",
+      "/assets/streamlit.png",
+      "/assets/sqlite.png",
+      "/assets/matplotlib.png",
+      "/assets/github.png"
+    ],
+    "link": "https://github.com/meghanan266/Social-Media-Sentiment-Analysis"
   }
 }

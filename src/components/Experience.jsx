@@ -3,6 +3,15 @@ import React from 'react';
 function Experience() {
   const experiences = [
     {
+      role: "Software Engineering Teaching Assistant",
+      company: "Northeastern University, Boston, MA",
+      duration: "Sept 2025 - Dec 2025",
+      description: [
+        "Mentored 50+ students in building a full-stack web app using TypeScript, React, Node, Git, Postman, and Jest, providing code reviews, debugging support, and enforced CI / CD automation.",
+        "Led Agile sprint planning and reviews, guiding 5 cross-functional teams in requirements analysis, system design, and data modeling for distributed, production- grade applications aligned with SDLC best practices.",
+      ]
+    },
+    {
       role: "Full-Stack Developer Intern",
       company: "XYZ Datalab, Northeastern University, Boston, MA",
       duration: "May 2025 - Aug 2025",
@@ -12,7 +21,8 @@ function Experience() {
         "Architecting scalable backend systems with controller-service patterns, deploying on Cloudways (DigitalOcean) to support 10x data growth and ensure 99.9% uptime across high-traffic research use cases.",
         "Collaborating closely with researchers and designers to gather requirements, refine architecture, and deploy to cloud infrastructure, enhancing site security and scalability.",
       ]
-    }, {
+    },
+    {
       role: "Software Development Engineer",
       company: "IQVIA, Bengaluru, India",
       duration: "Aug 2022 – Aug 2024",

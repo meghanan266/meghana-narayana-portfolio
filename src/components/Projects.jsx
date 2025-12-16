@@ -6,12 +6,12 @@ export default function Projects() {
     {
       id: "e-commerce-application",
       name: "Verdant Online Store",
-      image: "/assets/ecomm-1.png",
+      image: "/assets/verdant/ecomm-1.png",
     },
     {
       id: "image-processing-application",
       name: "Image Processing Application",
-      image: "/assets/img-process-1.png",
+      image: "/assets/image-process/img-process-1.png",
     },
     {
       id: "portfolio-website",
@@ -21,12 +21,17 @@ export default function Projects() {
     {
       id: "food-donation",
       name: "Food Bridge Application",
-      image: "/assets/food-1.png",
+      image: "/assets/food-bridge/food-1.png",
     },
     {
       id: "career-link",
       name: "Career Link Application",
-      image: "/assets/career-1.png",
+      image: "/assets/career-link/career-1.png",
+    },
+    {
+      id: "reddit-ml-sentiment-analysis",
+      name: "Social-Media-Sentiment-Analysis",
+      image: "/assets/sentiment-analysis/reddit-ml-1.png",
     },
   ];
 
