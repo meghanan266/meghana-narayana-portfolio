@@ -215,5 +215,50 @@
       "/assets/github.png"
     ],
     "link": "https://github.com/meghanan266/Social-Media-Sentiment-Analysis"
+  },
+  "healthsense-iot": {
+    "title": "HealthSense — Real-Time IoT Health Monitoring Dashboard",
+    "description": "Built a cloud-native, real-time health telemetry platform that collects and visualizes wearable sensor data (heart rate, temperature, SpO₂, steps) from thousands of simulated IoT devices. The system uses Go for backend services, React for dashboards, and AWS streaming architecture (IoT Core, Kinesis, Lambda) with Redis caching for sub-second latency. Features anomaly detection with automated SNS/Email alerts, WebSocket live updates, and comprehensive observability with CloudWatch dashboards.",
+    "technologies": [
+      "Go",
+      "React",
+      "AWS IoT Core",
+      "Kinesis",
+      "Lambda",
+      "DynamoDB",
+      "Redis",
+      "Terraform",
+      "Docker"
+    ],
+    "keyFeatures": [
+      "Architected and deployed a distributed IoT platform handling 10,000+ concurrent devices with p95 end-to-end latency under 800ms",
+      "Implemented MQTT ingestion via AWS IoT Core with Kinesis streaming for durable, scalable data processing at 2-second intervals",
+      "Built anomaly detection system using EWMA, z-score algorithms, and debounce logic to identify health events (tachycardia, fever spikes)",
+      "Designed Redis caching layer for hot data (last 5-10 minutes) reducing DynamoDB reads by 65% and achieving sub-second dashboard updates",
+      "Developed Go REST API and WebSocket server with JWT authentication and tenant-based data isolation for multi-tenant support",
+      "Created React dashboard with real-time Chart.js visualizations, live telemetry tiles, alert feeds, and toggle between polling vs WebSocket modes",
+      "Configured automated SNS/Email alerts with configurable thresholds and delivery tracking via CloudWatch metrics",
+      "Productionized with Terraform IaC (VPC, IoT, Kinesis, Lambda, DynamoDB, ElastiCache, SNS), Docker containerization, and CI/CD via GitHub Actions",
+      "Conducted load testing experiments comparing throughput vs latency at 1k/5k/10k device scales, polling vs WebSocket performance, and failure recovery scenarios",
+      "Implemented comprehensive observability with CloudWatch dashboards tracking Kinesis iterator age, Lambda duration/errors, DynamoDB throttles, API latency percentiles, and WebSocket connections"
+    ],
+    "screenshots": [
+      "/assets/healthsense/healthsense-1.png",
+      "/assets/healthsense/healthsense-2.png",
+      "/assets/healthsense/healthsense-3.png",
+      "/assets/healthsense/healthsense-4.png"
+    ],
+    "techStackIcons": [
+      "/assets/go.png",
+      "/assets/react-logo.png",
+      "/assets/aws-iot.png",
+      "/assets/kinesis.png",
+      "/assets/lambda.png",
+      "/assets/dynamodb.png",
+      "/assets/redis.png",
+      "/assets/terraform.png",
+      "/assets/docker.png"
+    ],
+    "link": "https://github.com/meghanan266/Healthsense-IoT-Monitoring"
   }
 }

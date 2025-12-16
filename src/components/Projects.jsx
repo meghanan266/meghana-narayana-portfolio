@@ -30,8 +30,13 @@ export default function Projects() {
     },
     {
       id: "reddit-ml-sentiment-analysis",
-      name: "Social-Media-Sentiment-Analysis",
+      name: "Social Media Sentiment Analysis",
       image: "/assets/sentiment-analysis/reddit-ml-1.png",
+    },
+    {
+      id: "healthsense-iot",
+      name: "HealthSense: Real-Time IoT Health Monitor",
+      image: "/assets/healthsense/healthsense-1.png",
     },
   ];
 
