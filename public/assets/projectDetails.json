@@ -33,17 +33,6 @@
       "/assets/verdant/ecomm-3.png",
       "/assets/verdant/ecomm-4.png"
     ],
-    "techStackIcons": [
-      "/assets/angular-logo.png",
-      "/assets/dotnet-logo.png",
-      "/assets/azure-logo.png",
-      "/assets/jwt-logo.png",
-      "/assets/razorpay-logo.png",
-      "/assets/bootstrap-logo.png",
-      "/assets/sql-logo.png",
-      "/assets/github.png",
-      "/assets/vercel-logo.png"
-    ],
     "link": "https://github.com/meghanan266/Verdant-online-store"
   },
   "image-processing-application": {
@@ -71,11 +60,6 @@
     "screenshots": [
       "/assets/image-process/img-process-1.png",
       "/assets/image-process/img-process-2.png"
-    ],
-    "techStackIcons": [
-      "/assets/java-logo.png",
-      "/assets/swing-logo.jpg",
-      "/assets/junit-logo.png"
     ]
   },
   "portfolio-website": {
@@ -102,16 +86,6 @@
       "Integrated a functional contact form with validation for collecting user inquiries",
       "Hosted and deployed the application on Vercel with continuous integration from GitHub"
     ],
-    "techStackIcons": [
-      "/assets/react-logo.png",
-      "/assets/tailwind-logo.jpg",
-      "/assets/vite-logo.jpg",
-      "/assets/javascript-logo.png",
-      "/assets/html-logo.png",
-      "/assets/css-logo.png",
-      "/assets/github.png",
-      "/assets/vercel-logo.png"
-    ],
     "link": "https://meghana-narayana-portfolio.vercel.app/"
   },
   "food-donation": {
@@ -137,12 +111,6 @@
       "/assets/food-bridge/food-2.png",
       "/assets/food-bridge/food-3.png",
       "/assets/food-bridge/food-4.png"
-    ],
-    "techStackIcons": [
-      "/assets/angular-logo.png",
-      "/assets/flask-logo.png",
-      "/assets/mysql-logo.png",
-      "/assets/python-logo.jpg"
     ],
     "link": "https://github.com/meghanan266/Food-donation"
   },
@@ -172,17 +140,6 @@
       "Configured secure resume upload and storage via Cloudinary for fast access and retrieval",
       "Developed RESTful APIs using Node.js and Express, and managed relational data with PostgreSQL and Prisma ORM",
       "Deployed the frontend on Vercel with CI/CD from GitHub for a seamless DevOps workflow"
-    ],
-    "techStackIcons": [
-      "/assets/react-logo.png",
-      "/assets/material.png",
-      "/assets/node-js.png",
-      "/assets/express.png",
-      "/assets/Postgresql.png",
-      "/assets/prisma.png",
-      "/assets/Google_ai_studio_logo.png",
-      "/assets/Cloudinary.jpg",
-      "/assets/javascript-logo.png"
     ],
     "screenshots": [
       "/assets/career-link/career-1.png",
@@ -223,15 +180,6 @@
       "/assets/sentiment-analysis/reddit-ml-3.png",
       "/assets/sentiment-analysis/reddit-ml-4.png"
     ],
-    "techStackIcons": [
-      "/assets/python-logo.jpg",
-      "/assets/pandas.png",
-      "/assets/prophet.png",
-      "/assets/streamlit.png",
-      "/assets/sqlite.png",
-      "/assets/matplotlib.png",
-      "/assets/github.png"
-    ],
     "link": "https://github.com/meghanan266/Social-Media-Sentiment-Analysis"
   },
   "healthsense-iot": {
@@ -269,17 +217,6 @@
       "/assets/healthsense/healthsense-3.png",
       "/assets/healthsense/healthsense-4.png"
     ],
-    "techStackIcons": [
-      "/assets/go.png",
-      "/assets/react-logo.png",
-      "/assets/aws-iot.png",
-      "/assets/kinesis.png",
-      "/assets/lambda.png",
-      "/assets/dynamodb.png",
-      "/assets/redis.png",
-      "/assets/terraform.png",
-      "/assets/docker.png"
-    ],
     "link": "https://github.com/meghanan266/Healthsense-IoT-Monitoring"
   },
   "opsdash": {
@@ -305,7 +242,6 @@
       "Containerized the application with Docker and deployed to Azure for scalable multi-tenant hosting"
     ],
     "screenshots": [],
-    "techStackIcons": [],
     "link": ""
   },
   "canvas-sync": {
@@ -330,7 +266,6 @@
       "Applied CRDT-based conflict resolution for concurrent editing without data loss"
     ],
     "screenshots": [],
-    "techStackIcons": [],
     "link": ""
   },
   "documind": {
@@ -355,7 +290,6 @@
       "Containerized the full stack with Docker for reproducible deployments"
     ],
     "screenshots": [],
-    "techStackIcons": [],
     "link": ""
   },
   "flashsale": {
@@ -379,7 +313,6 @@
       "Load tested with Artillery to validate throughput and latency under simulated flash sale conditions"
     ],
     "screenshots": [],
-    "techStackIcons": [],
     "link": ""
   },
   "devflow": {
@@ -404,7 +337,6 @@
       "Implemented feedback loop where developers can rate AI suggestions to improve future review quality"
     ],
     "screenshots": [],
-    "techStackIcons": [],
     "link": ""
   }
 }
