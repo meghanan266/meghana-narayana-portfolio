@@ -2,6 +2,9 @@
   "e-commerce-application": {
     "title": "Verdant Online Store",
     "description": "Developed a highly scalable and secure e-commerce platform using Angular and .NET Core (C#). Implemented JWT authentication with guards and interceptors, integrated Razorpay for payments, and designed a responsive UI optimized for both desktop and mobile using Bootstrap. Utilized Entity Framework for efficient ORM to manage database interactions.",
+    "problem": "Building a secure, scalable online store with real-time payment processing and role-based admin controls — without compromising on mobile responsiveness.",
+    "approach": "Architected a full-stack platform with Angular and .NET Core, using JWT guards for security, Razorpay for payments, and Entity Framework for clean data access.",
+    "impact": "Delivered a production-ready e-commerce platform deployed on Azure with secure payments, responsive design across all devices, and a full admin dashboard.",
     "technologies": [
       "Angular",
       ".NET Core (C#)",
@@ -46,6 +49,9 @@
   "image-processing-application": {
     "title": "Image Processing Application",
     "description": "Designed and implemented a robust Java-based application for advanced image processing. The project showcases proficiency in software design patterns, modular architecture, and testing practices. It includes both a user-friendly GUI built with Swing and a flexible command-line interface for advanced scripting.",
+    "problem": "Creating an extensible image processing tool that supports both GUI and command-line workflows while maintaining clean, testable architecture.",
+    "approach": "Built a modular Java application using MVC architecture, SOLID principles, and Swing for the GUI — with comprehensive JUnit test coverage.",
+    "impact": "Produced a robust desktop tool supporting advanced filters, transformations, and histogram generation with both visual and scripted interfaces.",
     "technologies": [
       "Java",
       "Swing",
@@ -75,6 +81,9 @@
   "portfolio-website": {
     "title": "Portfolio Website",
     "description": "Developed a modern, interactive portfolio website using React and Tailwind CSS, optimized with Vite for efficient builds and fast development. This project showcases a deep understanding of frontend development, component-based architecture, and responsive design.",
+    "problem": "Designing a portfolio that reflects both design sensibility and technical depth — fast, responsive, and fun to explore.",
+    "approach": "Built with React and Tailwind CSS, powered by Vite for instant HMR, with component-driven architecture and smooth page transitions.",
+    "impact": "A performant, accessible portfolio with dynamic routing, animated sections, and continuous deployment via Vercel.",
     "technologies": [
       "React",
       "Tailwind CSS",
@@ -108,6 +117,9 @@
   "food-donation": {
     "title": "Food Bridge Application",
     "description": "Designed and developed a full-stack web application to reduce food waste by connecting donors with surplus food to recipients in need. Built with Angular, Flask, and MySQL, it features a responsive user interface, secure APIs, and database management, with a focus on societal impact and technical excellence.",
+    "problem": "Millions of pounds of food go to waste daily while people go hungry. The challenge: connect surplus food donors with recipients efficiently.",
+    "approach": "Developed a full-stack app with Angular, Flask, and MySQL featuring automated expiration management, donor rewards, and a normalized database with triggers.",
+    "impact": "Created a working platform that streamlines food donation logistics with automated post management and real-time donor-recipient matching.",
     "technologies": [
       "Angular",
       "Flask",
@@ -137,6 +149,9 @@
   "career-link": {
     "title": "CareerLink Web Application",
     "description": "CareerLink is a full-stack platform designed to streamline job searches and employer outreach. It offers secure, role-based access for employers and job seekers, advanced job filtering, and AI-driven resume feedback using Google's Gemini API. Built for performance, clarity, and scale.",
+    "problem": "Job seekers struggle with irrelevant listings, and employers drown in unqualified applications. Both sides need smarter tools.",
+    "approach": "Built a full-stack platform with React, Node.js, and PostgreSQL — featuring AI-powered resume analysis via Google Gemini, advanced filtering, and role-based access.",
+    "impact": "Delivered a platform with AI resume feedback, secure file uploads via Cloudinary, and dynamic job matching — deployed with CI/CD on Vercel.",
     "technologies": [
       "React.js",
       "Material UI",
@@ -180,6 +195,9 @@
   "reddit-ml-sentiment-analysis": {
     "title": "Social Media Sentiment Analysis",
     "description": "Analyzed over a decade of discourse evolution in the MachineLearning subreddit, tracking the rise of deep learning, sentiment trends, and community growth from 2009 to 2020. Built a comprehensive data science pipeline with NLP preprocessing, VADER sentiment analysis, SQLite database storage, and Facebook Prophet forecasting. Features an interactive Streamlit dashboard for exploring 42 tracked ML terms and visualizing trends.",
+    "problem": "Understanding how the machine learning community's interests and sentiment evolved over a decade — across 300K+ Reddit posts.",
+    "approach": "Built an end-to-end data science pipeline with VADER sentiment analysis, NLP preprocessing, SQLite storage, and Prophet forecasting — visualized in Streamlit.",
+    "impact": "Tracked 42 ML terms revealing Deep Learning grew 890%, Transformer adoption surged 2000%, and PyTorch overtook TensorFlow by 2019.",
     "technologies": [
       "Python",
       "pandas",
@@ -219,6 +237,9 @@
   "healthsense-iot": {
     "title": "HealthSense — Real-Time IoT Health Monitoring Dashboard",
     "description": "Built a cloud-native, real-time health telemetry platform that collects and visualizes wearable sensor data (heart rate, temperature, SpO₂, steps) from thousands of simulated IoT devices. The system uses Go for backend services, React for dashboards, and AWS streaming architecture (IoT Core, Kinesis, Lambda) with Redis caching for sub-second latency. Features anomaly detection with automated SNS/Email alerts, WebSocket live updates, and comprehensive observability with CloudWatch dashboards.",
+    "problem": "Monitoring health vitals from thousands of wearable devices in real-time — with sub-second latency and automated anomaly alerts.",
+    "approach": "Designed a cloud-native IoT platform with Go microservices, AWS streaming (IoT Core → Kinesis → Lambda → DynamoDB), Redis caching, and WebSocket dashboards.",
+    "impact": "10,000+ concurrent devices handled at p95 latency under 800ms. Redis caching reduced DynamoDB reads by 65%. Automated alerts catch tachycardia and fever spikes.",
     "technologies": [
       "Go",
       "React",
@@ -260,5 +281,130 @@
       "/assets/docker.png"
     ],
     "link": "https://github.com/meghanan266/Healthsense-IoT-Monitoring"
+  },
+  "opsdash": {
+    "title": "OpsDash: Multi-Tenant Operations Dashboard",
+    "description": "Prevented cross-tenant data leaks with EF Core global query filters and JWT-based isolation. Replaced polling with SignalR WebSocket push and Redis caching for real-time operational metrics across multiple tenant environments.",
+    "problem": "Multi-tenant dashboards risk cross-tenant data leaks and stale metrics from polling-based architectures.",
+    "approach": "Implemented EF Core global query filters with JWT-based tenant isolation, replaced polling with SignalR WebSocket push, and added Redis caching.",
+    "impact": "Zero cross-tenant data leaks, 70% reduction in dashboard update latency, and significantly lower database load through intelligent caching.",
+    "technologies": [
+      ".NET Core",
+      "SignalR",
+      "Redis",
+      "Docker",
+      "Azure",
+      "Entity Framework",
+      "JWT",
+      "SQL Server"
+    ],
+    "keyFeatures": [
+      "Implemented tenant-level data isolation using EF Core global query filters and JWT claims to prevent cross-tenant data leaks",
+      "Replaced HTTP polling with SignalR WebSocket push for real-time dashboard updates, reducing latency by 70%",
+      "Designed Redis caching layer for frequently accessed operational metrics, cutting database load significantly",
+      "Containerized the application with Docker and deployed to Azure for scalable multi-tenant hosting"
+    ],
+    "screenshots": [],
+    "techStackIcons": [],
+    "link": ""
+  },
+  "canvas-sync": {
+    "title": "CanvasSync: Real-Time Collaborative Whiteboard",
+    "description": "Real-time collaborative whiteboard with HTML5 Canvas rendering, WebSocket sync, and cursor presence for multi-user editing at 60fps. Features conflict-free replicated data types (CRDTs) for seamless collaboration without merge conflicts.",
+    "problem": "Real-time collaboration tools need to handle concurrent edits without conflicts — at 60fps with zero lag.",
+    "approach": "Built a Canvas rendering engine with WebSocket sync via Socket.io, optimistic UI updates, and CRDT-based conflict resolution.",
+    "impact": "Smooth 60fps collaborative drawing with live cursor presence, real-time sync, and conflict-free concurrent editing.",
+    "technologies": [
+      "React",
+      "HTML5 Canvas",
+      "WebSocket",
+      "Socket.io",
+      "Node.js",
+      "Express",
+      "Redis"
+    ],
+    "keyFeatures": [
+      "Built a high-performance drawing engine using HTML5 Canvas with requestAnimationFrame for smooth 60fps rendering",
+      "Implemented real-time synchronization using WebSockets and Socket.io with optimistic UI updates",
+      "Designed cursor presence system showing live collaborator positions and selections in real-time",
+      "Applied CRDT-based conflict resolution for concurrent editing without data loss"
+    ],
+    "screenshots": [],
+    "techStackIcons": [],
+    "link": ""
+  },
+  "documind": {
+    "title": "DocuMind: AI Document Analysis",
+    "description": "An AI-powered document analysis platform that uses LLMs to extract insights, summarize content, and answer questions from uploaded documents. Features RAG (Retrieval-Augmented Generation) pipeline for accurate, context-aware responses.",
+    "problem": "Extracting meaningful answers from large documents is tedious. Users need AI that understands context, not just keywords.",
+    "approach": "Built a RAG pipeline with LangChain, ChromaDB for vector search, and OpenAI API — served via FastAPI with streaming responses.",
+    "impact": "Context-aware document Q&A with high accuracy, real-time streaming responses, and containerized deployment for reproducibility.",
+    "technologies": [
+      "Python",
+      "LangChain",
+      "OpenAI API",
+      "FastAPI",
+      "React",
+      "ChromaDB",
+      "Docker"
+    ],
+    "keyFeatures": [
+      "Built a RAG pipeline using LangChain and ChromaDB for context-aware document Q&A with high accuracy",
+      "Implemented document chunking and vector embedding for efficient semantic search across large documents",
+      "Designed a clean React frontend with real-time streaming responses from the LLM backend",
+      "Containerized the full stack with Docker for reproducible deployments"
+    ],
+    "screenshots": [],
+    "techStackIcons": [],
+    "link": ""
+  },
+  "flashsale": {
+    "title": "Flashsale Order Processing System",
+    "description": "A high-throughput order processing system designed for flash sale events. Uses event-driven architecture with message queues to handle burst traffic, prevent overselling, and ensure order consistency under extreme load.",
+    "problem": "Flash sales generate extreme traffic spikes that crash systems, oversell inventory, and corrupt orders.",
+    "approach": "Designed an event-driven system with RabbitMQ for decoupled processing, Redis distributed locks for inventory, and idempotent payment pipelines.",
+    "impact": "Handles 10K+ concurrent requests without overselling, with exactly-once order processing validated through Artillery load tests.",
+    "technologies": [
+      "Node.js",
+      "RabbitMQ",
+      "Redis",
+      "PostgreSQL",
+      "Docker",
+      "Express"
+    ],
+    "keyFeatures": [
+      "Designed event-driven architecture using RabbitMQ to decouple order intake from processing, handling 10K+ concurrent requests",
+      "Implemented distributed locking with Redis to prevent inventory overselling during flash sale spikes",
+      "Built idempotent order processing pipeline ensuring exactly-once semantics for payment and inventory updates",
+      "Load tested with Artillery to validate throughput and latency under simulated flash sale conditions"
+    ],
+    "screenshots": [],
+    "techStackIcons": [],
+    "link": ""
+  },
+  "devflow": {
+    "title": "DevFlow: AI Code Review Platform",
+    "description": "An AI-powered code review platform that analyzes pull requests, suggests improvements, and identifies potential bugs using LLMs. Integrates with GitHub webhooks for automated review workflows.",
+    "problem": "Code reviews are time-consuming and inconsistent. Teams need automated, intelligent feedback on every pull request.",
+    "approach": "Integrated GitHub webhooks with OpenAI-powered analysis for bug detection, style suggestions, and security checks — with a React review dashboard.",
+    "impact": "Automated PR reviews with inline suggestions, a developer feedback loop for continuous improvement, and a clean diff-based triage interface.",
+    "technologies": [
+      "Python",
+      "FastAPI",
+      "OpenAI API",
+      "React",
+      "GitHub API",
+      "PostgreSQL",
+      "Docker"
+    ],
+    "keyFeatures": [
+      "Integrated GitHub webhooks for automatic PR analysis and inline review comment generation",
+      "Built intelligent code analysis using OpenAI API with custom prompts for bug detection, style suggestions, and security checks",
+      "Designed a review dashboard in React showing AI suggestions alongside diff views for easy triage",
+      "Implemented feedback loop where developers can rate AI suggestions to improve future review quality"
+    ],
+    "screenshots": [],
+    "techStackIcons": [],
+    "link": ""
   }
 }
