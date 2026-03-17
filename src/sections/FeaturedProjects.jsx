@@ -8,10 +8,12 @@ import { featuredProjects } from "../data/projects";
 gsap.registerPlugin(ScrollTrigger);
 
 function useIsMobile() {
-  const [mobile, setMobile] = useState(false);
+  const [mobile, setMobile] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth < 768;
+  });
   useEffect(() => {
     const check = () => setMobile(window.innerWidth < 768);
-    check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);

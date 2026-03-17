@@ -95,7 +95,10 @@ export default function Hero() {
   const rafRef = useRef(null);
 
   const { setActiveSection } = useActiveSection();
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth < 768;
+  });
   const [typedRole, setTypedRole] = useState("");
   const [cursorVisible, setCursorVisible] = useState(true);
   const roleIndexRef = useRef(0);
@@ -143,7 +146,6 @@ export default function Hero() {
   // Track viewport size for mobile behaviour
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
-    check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
@@ -163,7 +165,10 @@ export default function Hero() {
   }, [setActiveSection]);
 
   // GSAP ScrollTrigger for scroll progress + text drift
+  // Disabled on small screens to avoid pinning / DOM mutations clashing with React on mobile
   useEffect(() => {
+    if (isMobile) return;
+
     const ctx = gsap.context(() => {
       if (!heroRef.current) return;
 
@@ -200,7 +205,7 @@ export default function Hero() {
     }, heroRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   // Particle system setup
   useEffect(() => {

@@ -100,10 +100,12 @@ const YEAR_MARKS = ["2020", "2021", "2022", "2023", "2024", "2025"];
 
 /* ── Hooks ── */
 function useIsMobile() {
-  const [mobile, setMobile] = useState(false);
+  const [mobile, setMobile] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth < 768;
+  });
   useEffect(() => {
     const check = () => setMobile(window.innerWidth < 768);
-    check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
@@ -735,6 +737,8 @@ export default function HorizontalScroll() {
     }, containerRef);
 
     return () => {
+      const st = ScrollTrigger.getById("horizontalScroll");
+      if (st) st.kill();
       ctx.revert();
       containerRef.current?.__navCleanup?.();
     };
