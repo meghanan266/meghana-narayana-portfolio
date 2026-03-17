@@ -585,6 +585,42 @@ export default function HorizontalScroll() {
   useEffect(() => {
     if (isMobile || !trackRef.current || !containerRef.current) return;
 
+    const createPanelScrollHandler = (panelId, offsetFactor = 0) => () => {
+      const track = trackRef.current;
+      if (!track) return;
+
+      const st = ScrollTrigger.getById("horizontalScroll");
+      if (!st) return;
+
+      const totalWidth = track.scrollWidth;
+      const vw = window.innerWidth;
+      const scrollDist = totalWidth - vw;
+
+      const panel = track.querySelector(`#${panelId}`);
+      if (!panel) return;
+
+      const extraOffset = vw * offsetFactor;
+      const targetOffset = Math.min(panel.offsetLeft + extraOffset, totalWidth - vw);
+
+      const progress = scrollDist > 0 ? targetOffset / scrollDist : 0;
+      const targetScrollY = st.start + progress * (st.end - st.start);
+
+      st.scroll(targetScrollY);
+    };
+
+    const handleScrollToSkills = createPanelScrollHandler("skills", 0.05);
+    const handleScrollToExperience = createPanelScrollHandler("experience", 0.03);
+
+    window.addEventListener("nav:scrollToSkills", handleScrollToSkills);
+    window.addEventListener("nav:scrollToExperience", handleScrollToExperience);
+
+    if (containerRef.current) {
+      containerRef.current.__navCleanup = () => {
+        window.removeEventListener("nav:scrollToSkills", handleScrollToSkills);
+        window.removeEventListener("nav:scrollToExperience", handleScrollToExperience);
+      };
+    }
+
     const ctx = gsap.context(() => {
       const track = trackRef.current;
       const container = containerRef.current;
@@ -594,6 +630,7 @@ export default function HorizontalScroll() {
 
       const mainTl = gsap.timeline({
         scrollTrigger: {
+          id: "horizontalScroll",
           trigger: container,
           pin: true,
           scrub: 1,
@@ -697,7 +734,10 @@ export default function HorizontalScroll() {
       }
     }, containerRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      containerRef.current?.__navCleanup?.();
+    };
   }, [isMobile]);
 
   if (isMobile) return <MobileLayout />;

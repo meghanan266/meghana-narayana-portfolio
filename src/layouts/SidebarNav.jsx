@@ -59,6 +59,18 @@ export default function SidebarNav() {
     const id = to.replace("/#", "");
 
     if (location.pathname === "/") {
+      const isDesktop = window.innerWidth >= 768;
+
+      if (isDesktop && id === "experience") {
+        window.dispatchEvent(new CustomEvent("nav:scrollToExperience"));
+        return;
+      }
+
+      if (isDesktop && id === "skills") {
+        window.dispatchEvent(new CustomEvent("nav:scrollToSkills"));
+        return;
+      }
+
       const el = document.getElementById(id);
       if (el) {
         el.scrollIntoView({ behavior: "smooth" });
