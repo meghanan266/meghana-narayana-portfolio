@@ -58,4 +58,18 @@ export const skills = {
     "Agile",
     "JIRA",
   ],
+  "AI Engineering": [
+    "OpenAI API",
+    "GPT-4o",
+    "PydanticAI",
+    "Semantic Kernel",
+    "Azure OpenAI",
+    "pgvector",
+    "RAG Pipelines",
+    "MCP",
+    "FHIR R4",
+    "SSE Streaming",
+    "Prompt Engineering",
+    "Agentic Workflows",
+  ],
 };
