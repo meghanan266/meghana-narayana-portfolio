@@ -16,12 +16,12 @@ const navLinks = [
 const socialLinks = [
   {
     icon: FaLinkedinIn,
-    href: "https://www.linkedin.com/in/meghana-narayana",
+    href: "https://www.linkedin.com/in/meghananarayana/",
     label: "LinkedIn",
   },
   {
     icon: FaGithub,
-    href: "https://github.com/MeghanaNarayana",
+    href: "https://github.com/meghanan266",
     label: "GitHub",
   },
 ];
