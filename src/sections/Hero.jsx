@@ -76,10 +76,10 @@ const wrap = (val, min, max) => {
 };
 
 const ROLES_PHRASES = ["Software Engineer", "AI Software Engineer", "Full Stack Developer", "Cloud Enthusiast", "Scalable Distributed Systems"];
-const TYPING_MS = 90;
-const DELETING_MS = 50;
-const PAUSE_AFTER_TYPE_MS = 1800;
-const PAUSE_AFTER_DELETE_MS = 400;
+const TYPING_MS = 25;
+const DELETING_MS = 14;
+const PAUSE_AFTER_TYPE_MS = 700;
+const PAUSE_AFTER_DELETE_MS = 120;
 
 export default function Hero() {
   const heroRef = useRef(null);
