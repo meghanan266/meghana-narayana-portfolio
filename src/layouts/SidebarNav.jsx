@@ -7,9 +7,9 @@ import { useActiveSection } from "../context/ActiveSectionContext";
 
 const navLinks = [
   { label: "HOME", to: "/" },
-  { label: "SKILLS", to: "/#skills" },
   { label: "EXPERIENCE", to: "/#experience" },
   { label: "PROJECTS", to: "/projects" },
+  { label: "SKILLS", to: "/#skills" },
   { label: "CONTACT", to: "/#contact" },
 ];
 
