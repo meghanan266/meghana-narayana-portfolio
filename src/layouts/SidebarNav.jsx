@@ -66,11 +66,6 @@ export default function SidebarNav() {
         return;
       }
 
-      if (isDesktop && id === "skills") {
-        window.dispatchEvent(new CustomEvent("nav:scrollToSkills"));
-        return;
-      }
-
       const el = document.getElementById(id);
       if (el) {
         el.scrollIntoView({ behavior: "smooth" });

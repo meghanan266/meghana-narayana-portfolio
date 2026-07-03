@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(code \"C:\\\\Users\\\\Meghana\\\\.claude\\\\plans\\\\i-need-to-edit-partitioned-shore.md\")",
+      "Read(//c/Users/Meghana/.claude/plans/**)"
+    ]
+  }
+}

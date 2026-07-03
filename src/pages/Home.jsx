@@ -3,6 +3,7 @@ import Hero from "../sections/Hero";
 import AboutIntro from "../sections/AboutIntro";
 import HorizontalScroll from "../sections/HorizontalScroll";
 import FeaturedProjects from "../sections/FeaturedProjects";
+import SkillsSection from "../sections/SkillsSection";
 import Contact from "../sections/Contact";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <AboutIntro />
       <HorizontalScroll />
       <FeaturedProjects />
+      <SkillsSection />
       <Contact />
     </div>
   );

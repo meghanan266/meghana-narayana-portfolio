@@ -476,7 +476,7 @@ export default function Contact() {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative z-30 -mt-10 overflow-hidden rounded-t-3xl bg-cream shadow-[0_-10px_40px_rgba(0,0,0,0.3)]"
+      className="relative z-30 mt-10 overflow-hidden rounded-t-3xl bg-cream shadow-[0_-10px_40px_rgba(0,0,0,0.3)]"
     >
       <FloatingEmojis />
       <div className="relative z-10 mx-auto max-w-6xl px-6 py-16 md:px-20 md:py-24">

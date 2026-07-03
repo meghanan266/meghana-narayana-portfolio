@@ -75,7 +75,7 @@ const wrap = (val, min, max) => {
   return ((val - min) % range + range) % range + min;
 };
 
-const ROLES_PHRASES = ["Software Engineer", "Full Stack Developer", "Cloud Enthusiast", "Scalable Distributed Systems"];
+const ROLES_PHRASES = ["Software Engineer", "AI Software Engineer", "Full Stack Developer", "Cloud Enthusiast", "Scalable Distributed Systems"];
 const TYPING_MS = 90;
 const DELETING_MS = 50;
 const PAUSE_AFTER_TYPE_MS = 1800;

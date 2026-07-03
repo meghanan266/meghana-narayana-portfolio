@@ -13,13 +13,13 @@ export const featuredProjects = [
   },
   {
     id: "opsdash",
-    name: "OpsDash: Multi-Tenant Operations Dashboard",
+    name: "OpsDash: Real-Time Operational Intelligence Platform",
     shortDescription:
-      "Multi-tenant SaaS platform with Z-score anomaly detection, metric forecasting, incident auto-grouping, and SignalR real-time push — 85% latency reduction via Redis.",
+      "Multi-tenant SaaS with Z-score anomaly detection, time-windowed metric correlation, WMA/regression forecasting, weighted health scores, and incident auto-grouping — 85% latency cut via SignalR + Redis.",
     description:
-      "Prevented cross-tenant data leaks with EF Core global query filters and JWT-based isolation. Z-score anomaly detection engine, weighted moving average forecasting, incident auto-grouping, and real-time tenant health scores. Replaced polling with SignalR WebSocket push and Redis caching — 85% dashboard latency reduction.",
+      "Active monitoring platform (not a passive dashboard) that ingests operational metrics per tenant and detects anomalies via rolling Z-score baselines, correlates related metric movements within a time window, forecasts trends with weighted moving average / linear regression, computes a weighted tenant health score, and auto-groups anomalies into incidents with full timelines. EF Core global query filters + JWT claims enforce tenant isolation. Replaced polling with SignalR push and Redis caching — 85% dashboard latency reduction.",
     image: null,
-    tags: [".NET Core", "SignalR", "Redis", "Azure", "Angular", "SQL Server", "Docker"],
+    tags: [".NET 9", "Angular 19", "SignalR", "Redis", "Azure", "SQL Server", "EF Core", "Docker"],
     category: "Full Stack",
     featured: true,
   },
@@ -68,11 +68,11 @@ export const allProjects = [
   },
   {
     id: "opsdash",
-    name: "OpsDash: Multi-Tenant Operations Dashboard",
+    name: "OpsDash: Real-Time Operational Intelligence Platform",
     shortDescription:
-      "Multi-tenant SaaS with Z-score anomaly detection, metric forecasting, incident auto-grouping, SignalR push, and 85% latency reduction via Redis.",
+      "Multi-tenant SaaS with Z-score anomaly detection, metric correlation, forecasting, health scores, incident auto-grouping, SignalR push, and 85% latency reduction via Redis.",
     image: null,
-    tags: [".NET Core", "SignalR", "Redis", "Azure", "Angular", "SQL Server"],
+    tags: [".NET 9", "Angular 19", "SignalR", "Redis", "Azure", "SQL Server", "EF Core"],
     category: "Full Stack",
     featured: true,
   },
@@ -97,9 +97,9 @@ export const allProjects = [
   },
   {
     id: "snip",
-    name: "Snip: Link Shortener with Analytics",
+    name: "Snip: URL Shortener with Analytics",
     shortDescription:
-      "Production-grade link shortener with edge-level redirects in Next.js middleware, Redis cache-aside for sub-5ms latency, and async analytics via QStash.",
+      "Production-grade URL shortener with edge-level redirects in Next.js middleware, Redis cache-aside for sub-5ms latency, and async analytics via QStash.",
     image: null,
     tags: ["Next.js", "TypeScript", "Redis", "MySQL", "Prisma", "QStash", "Vercel"],
     category: "Full Stack",
@@ -156,6 +156,6 @@ export const allProjects = [
       "Desktop image processing application built in Java with a custom GUI for applying filters, transformations, and pixel-level manipulations.",
     image: "/assets/image-process/img-process-1.png",
     tags: ["Java"],
-    category: "Other",
+    category: "Backend",
   },
 ];

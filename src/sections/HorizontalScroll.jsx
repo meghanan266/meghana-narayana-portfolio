@@ -3,100 +3,142 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useActiveSection } from "../context/ActiveSectionContext";
 import {
-  SiReact, SiAngular, SiTypescript, SiNodedotjs, SiDocker,
-  SiAmazonwebservices, SiDotnet, SiTailwindcss,
-  SiMysql, SiJavascript, SiPython, SiTerraform, SiGit,
-  SiPostman, SiJest,
+  SiReact, SiAngular, SiTypescript, SiNodedotjs,
+  SiDotnet, SiTailwindcss, SiMysql, SiJavascript,
 } from "react-icons/si";
 import { VscAzure } from "react-icons/vsc";
-import { skills } from "../data/skills";
 import { experiences } from "../data/experience";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PORTRAIT_SRC = "/assets/bg-pic.png";
-const timelineRoles = [...experiences].reverse();
-const frontendSkills = skills.Frontend;
-const backendSkills = skills.Backend;
-const cloudToolsSkills = skills["Cloud & Tools"];
+
+// Panels: About + 5 experience panels — newest first (reverse chronological)
+const expPanels = [...experiences];
 
 const BG_STOPS = [
-  { p: 0, c: "#0a0a0a" },
-  { p: 0.15, c: "#1a0825" },
-  { p: 0.35, c: "#0d2137" },
-  { p: 0.55, c: "#0a2818" },
-  { p: 0.75, c: "#2a1508" },
-  { p: 1, c: "#0a0a0a" },
+  { p: 0,    c: "#0a0a0a" },
+  { p: 0.2,  c: "#0d1a2e" },
+  { p: 0.4,  c: "#1a0d00" },
+  { p: 0.6,  c: "#1a0d00" },
+  { p: 0.8,  c: "#0a1a10" },
+  { p: 1,    c: "#0a0a0a" },
 ];
 
-const TOTAL_PANELS = 5;
+const TOTAL_PANELS = 6; // About + 5 exp
 
-const SNIPPETS_FE = [
-  { text: "const App = () => {}", x: "4%", y: "6%", dur: 18, size: "text-sm" },
-  { text: "useState(false)", x: "82%", y: "10%", dur: 24, size: "text-xs" },
-  { text: 'className="flex"', x: "72%", y: "78%", dur: 20, size: "text-xs" },
-  { text: "npm run build", x: "10%", y: "82%", dur: 22, size: "text-sm" },
-  { text: "<Component />", x: "88%", y: "48%", dur: 16, size: "text-sm" },
-  { text: "onClick={handler}", x: "52%", y: "5%", dur: 26, size: "text-xs" },
-  { text: "useEffect(() => {})", x: "6%", y: "42%", dur: 19, size: "text-sm" },
-  { text: "tailwind.config", x: "38%", y: "90%", dur: 23, size: "text-xs" },
-  { text: "export default", x: "62%", y: "32%", dur: 21, size: "text-xs" },
-  { text: "import React", x: "28%", y: "12%", dur: 17, size: "text-sm" },
+// Floating info chips per panel (ordered: Camp K12, IQVIA Assoc, IQVIA SDE, UN, TA)
+// 3 rows × 2 columns fills the full panel height
+const CHIPS = [
+  // UN Internship (newest role)
+  [
+    { scale: "lg", headline: "RAG pipeline",               label: "Governance case studies → policy reports", tech: "pgvector · OpenAI Embeddings · GPT-4o · FastAPI · conversation history", x: "2%",  y: "2%",  rot: -1 },
+    { scale: "md", headline: "sub-300ms",                  label: "query response time",                  tech: "Node.js/Express · indexed PostgreSQL · AWS RDS · multi-filter queries",  x: "50%", y: "2%",  rot: 1  },
+    { scale: "md", headline: "Data visualisation platform", label: "multi-government datasets",           tech: "React 18 · TypeScript · D3.js · hierarchical charts · cross-filtering",  x: "2%",  y: "36%", rot: -1 },
+    { scale: "md", headline: "Zero manual exports",        label: "analysts work entirely in the UI",     tech: "interactive filters · instant chart updates · shareable views",           x: "50%", y: "36%", rot: 2  },
+    { scale: "sm", headline: "AWS RDS + S3",               label: "cloud storage backbone",               tech: "PostgreSQL on RDS · document storage on S3 · Express API layer",         x: "2%",  y: "73%", rot: -2 },
+    { scale: "sm", headline: "Multi-turn Q&A",             label: "follow-up refinement supported",       tech: "conversation history injected per request across turns",                  x: "50%", y: "73%", rot: 1  },
+  ],
+  // IQVIA SDE
+  [
+    { scale: "lg", headline: "10,000+",                    label: "drug trial records processed daily",   tech: "event-driven · Azure Functions + Service Bus · dead-letter queues · zero record loss", x: "2%",  y: "2%",  rot: -1 },
+    { scale: "md", headline: "8s → under 3s",              label: "Redis cache cut DB load by 65%",       tech: "distributed caching · drug reference data · eliminated redundant DB hits",              x: "50%", y: "2%",  rot: 1  },
+    { scale: "md", headline: "10K+ enterprise users",      label: "concurrent platform",                  tech: "ASP.NET Core API · Angular · Azure App Services · OAuth/JWT RBAC",                     x: "2%",  y: "36%", rot: -1 },
+    { scale: "md", headline: "MVC → Web API",              label: "full platform migration",              tech: "modular lazy-loaded Angular · ASP.NET Core · 20h/week saved",                          x: "50%", y: "36%", rot: 2  },
+    { scale: "sm", headline: "SonarQube CI/CD",            label: "25% fewer build failures",             tech: "GitLab pipelines · 50+ critical issues resolved",                                     x: "2%",  y: "73%", rot: -2 },
+    { scale: "sm", headline: "Race condition fixed",       label: "5K+ records protected",                tech: "pessimistic locking · concurrent drug data writes",                                   x: "50%", y: "73%", rot: 1  },
+  ],
+  // IQVIA Associate
+  [
+    { scale: "lg", headline: "70% faster",                 label: "dashboard render time",                tech: "SQL Server stored procs + server-side pagination on 100K+ rows",          x: "2%",  y: "2%",  rot: -1 },
+    { scale: "md", headline: "35% fewer defects",          label: "in production",                        tech: "50+ xUnit / Moq tests · market intelligence pipeline",                    x: "50%", y: "2%",  rot: 1  },
+    { scale: "md", headline: "Clinical trials tracker",    label: "built end-to-end",                     tech: "Angular · ASP.NET Core (C#) · EF Core state model · workflow automation", x: "2%",  y: "36%", rot: -1 },
+    { scale: "md", headline: "20% faster API",             label: "response time",                        tech: "LINQ optimization · query tuning · pagination",                           x: "50%", y: "36%", rot: 2  },
+    { scale: "sm", headline: "Selenium harvesting",        label: "200+ pharma websites",                 tech: "ClinicalTrials.gov · HTML Agility Pack · .NET",                           x: "2%",  y: "72%", rot: -2 },
+    { scale: "sm", headline: "30+ bugs resolved",          label: "high-priority production issues",      tech: "QA collaboration · DB team · root cause analysis",                        x: "50%", y: "72%", rot: 1  },
+  ],
+  // TA
+  [
+    { scale: "lg", headline: "50+ students",               label: "guided to prod-grade apps",            tech: "TypeScript · React · Node.js · Jest · Git · Postman · CI/CD",             x: "2%",  y: "2%",  rot: -1 },
+    { scale: "md", headline: "5 teams",                    label: "Agile sprint planning",                tech: "system design · data modeling · distributed architecture reviews",          x: "50%", y: "2%",  rot: 1  },
+    { scale: "md", headline: "Code reviews",               label: "+ debugging sessions",                 tech: "CI/CD enforcement · quality standards · real-world best practices",         x: "2%",  y: "36%", rot: -1 },
+    { scale: "md", headline: "Requirements → Deploy",      label: "full cycle per sprint",                tech: "requirements analysis · design · build · test · deploy",                   x: "50%", y: "36%", rot: 2  },
+    { scale: "sm", headline: "Full-stack curriculum",      label: "end-to-end coverage",                  tech: "frontend + backend + databases + infra + testing",                         x: "2%",  y: "73%", rot: -2 },
+    { scale: "sm", headline: "Distributed systems",        label: "architecture taught",                  tech: "CAP theorem · microservices · API design · async patterns",                x: "50%", y: "73%", rot: 1  },
+  ],
+  // Camp K12 (oldest)
+  [
+    { scale: "lg", headline: "85%",                        label: "positive feedback rate",               tech: "50+ students across live sessions",                                        x: "2%",  y: "2%",  rot: -1 },
+    { scale: "md", headline: "AI · Python · Web Dev",      label: "curriculum taught",                    tech: "live coding, hands-on projects every session",                             x: "50%", y: "2%",  rot: 1  },
+    { scale: "md", headline: "Abstract → Intuitive",       label: "teaching philosophy",                  tech: "visual aids · real-world analogies · demos",                               x: "2%",  y: "36%", rot: -1 },
+    { scale: "md", headline: "Recursion explained",        label: "to 12-year-olds",                      tech: "if they get it, the explanation works",                                    x: "50%", y: "36%", rot: 2  },
+    { scale: "sm", headline: "Consistent engagement",      label: "across all sessions",                  tech: "high-energy, project-driven format",                                       x: "2%",  y: "72%", rot: -2 },
+    { scale: "sm", headline: "Remote delivery",            label: "live interactive sessions",            tech: "Zoom · screen sharing · collaborative tools",                              x: "50%", y: "72%", rot: 1  },
+  ],
 ];
 
-const SNIPPETS_BE = [
-  { text: "SELECT * FROM users", x: "32%", y: "6%", dur: 20, size: "text-sm" },
-  { text: "app.listen(3000)", x: "80%", y: "14%", dur: 18, size: "text-xs" },
-  { text: "async await fetch", x: "8%", y: "32%", dur: 16, size: "text-xs" },
-  { text: "jwt.verify(token)", x: "32%", y: "92%", dur: 21, size: "text-sm" },
-  { text: "res.status(200)", x: "22%", y: "68%", dur: 17, size: "text-sm" },
-  { text: "app.use(express.json())", x: "84%", y: "72%", dur: 22, size: "text-xs" },
-  { text: "DbContext.SaveChanges()", x: "4%", y: "56%", dur: 26, size: "text-sm" },
-  { text: "router.get('/api')", x: "48%", y: "22%", dur: 23, size: "text-xs" },
-  { text: "services.AddScoped<>()", x: "72%", y: "42%", dur: 19, size: "text-xs" },
-  { text: "yield return result", x: "12%", y: "84%", dur: 24, size: "text-sm" },
+// Floating snippets per experience panel
+const SNIPPETS = [
+  // UN Internship
+  [
+    { text: "pgvector <=> embedding",  x: "4%",  y: "6%",  dur: 21, size: "text-sm" },
+    { text: "openai.chat(messages)",   x: "78%", y: "12%", dur: 19, size: "text-xs" },
+    { text: "d3.hierarchy(data)",      x: "8%",  y: "80%", dur: 22, size: "text-xs" },
+    { text: "SELECT embedding <=>",    x: "62%", y: "84%", dur: 18, size: "text-sm" },
+    { text: "history.push(message)",   x: "86%", y: "46%", dur: 24, size: "text-xs" },
+  ],
+  // IQVIA SDE
+  [
+    { text: "ServiceBus.SendAsync()",  x: "4%",  y: "8%",  dur: 19, size: "text-sm" },
+    { text: "AzureFunction.Run()",     x: "78%", y: "10%", dur: 21, size: "text-xs" },
+    { text: "Redis.GetAsync(key)",     x: "8%",  y: "82%", dur: 17, size: "text-xs" },
+    { text: "SonarQube.Analyze()",     x: "64%", y: "80%", dur: 23, size: "text-sm" },
+    { text: "angular migrate --v15",   x: "88%", y: "50%", dur: 20, size: "text-xs" },
+  ],
+  // IQVIA Associate
+  [
+    { text: "Selenium.FindElement()",  x: "4%",  y: "6%",  dur: 20, size: "text-sm" },
+    { text: "SELECT TOP 1000 * FROM", x: "80%", y: "14%", dur: 18, size: "text-xs" },
+    { text: "response.time < 200ms",  x: "8%",  y: "78%", dur: 22, size: "text-xs" },
+    { text: "crawler.navigate(url)",  x: "62%", y: "84%", dur: 19, size: "text-sm" },
+    { text: "LINQ.Where(x => x.Id)",  x: "86%", y: "44%", dur: 23, size: "text-xs" },
+  ],
+  // TA
+  [
+    { text: "function teach(concept)", x: "4%",  y: "8%",  dur: 18, size: "text-sm" },
+    { text: "for (student of class)", x: "78%", y: "12%", dur: 22, size: "text-xs" },
+    { text: "feedback.push(positive)", x: "8%",  y: "80%", dur: 20, size: "text-xs" },
+    { text: "recursion(recursion)",    x: "60%", y: "82%", dur: 24, size: "text-sm" },
+    { text: "console.log('aha!')",     x: "88%", y: "52%", dur: 16, size: "text-xs" },
+  ],
 ];
 
-const SNIPPETS_CT = [
-  { text: "docker compose up", x: "4%", y: "6%", dur: 20, size: "text-sm" },
-  { text: "terraform apply", x: "80%", y: "14%", dur: 18, size: "text-xs" },
-  { text: "git push origin main", x: "84%", y: "72%", dur: 22, size: "text-sm" },
-  { text: "az webapp deploy", x: "12%", y: "84%", dur: 24, size: "text-xs" },
-  { text: "aws s3 sync ./dist", x: "8%", y: "32%", dur: 16, size: "text-xs" },
-  { text: ".env.production", x: "4%", y: "56%", dur: 26, size: "text-sm" },
-  { text: "npm test --coverage", x: "72%", y: "42%", dur: 19, size: "text-xs" },
-  { text: "vercel --prod", x: "32%", y: "92%", dur: 21, size: "text-sm" },
-  { text: "kubectl get pods", x: "48%", y: "22%", dur: 23, size: "text-xs" },
-  { text: "git rebase -i HEAD~3", x: "22%", y: "68%", dur: 17, size: "text-sm" },
+const EXP_ICONS = [
+  // UN
+  [
+    { Icon: SiReact,      x: "70%", y: "16%", size: 110, rot: -8  },
+    { Icon: SiTypescript, x: "6%",  y: "72%", size: 90,  rot: 12  },
+    { Icon: SiTailwindcss,x: "46%", y: "6%",  size: 80,  rot: -5  },
+  ],
+  // IQVIA SDE
+  [
+    { Icon: VscAzure,     x: "70%", y: "18%", size: 110, rot: 5   },
+    { Icon: SiAngular,    x: "6%",  y: "70%", size: 100, rot: -12 },
+    { Icon: SiDotnet,     x: "46%", y: "8%",  size: 80,  rot: 8   },
+  ],
+  // IQVIA Associate
+  [
+    { Icon: SiDotnet,     x: "70%", y: "16%", size: 110, rot: -10 },
+    { Icon: SiMysql,      x: "8%",  y: "72%", size: 90,  rot: 8   },
+    { Icon: SiAngular,    x: "46%", y: "6%",  size: 80,  rot: -12 },
+  ],
+  // TA
+  [
+    { Icon: SiReact,      x: "72%", y: "18%", size: 110, rot: 15  },
+    { Icon: SiJavascript, x: "6%",  y: "70%", size: 90,  rot: -8  },
+    { Icon: SiNodedotjs,  x: "50%", y: "8%",  size: 80,  rot: 12  },
+  ],
 ];
-
-const FE_ICONS = [
-  { Icon: SiReact, x: "72%", y: "18%", size: 120, rot: 15 },
-  { Icon: SiAngular, x: "5%", y: "72%", size: 100, rot: -10 },
-  { Icon: SiTypescript, x: "45%", y: "6%", size: 80, rot: 20 },
-  { Icon: SiJavascript, x: "12%", y: "8%", size: 90, rot: -5 },
-  { Icon: SiTailwindcss, x: "65%", y: "75%", size: 90, rot: 12 },
-];
-
-const BE_ICONS = [
-  { Icon: SiNodedotjs, x: "72%", y: "16%", size: 110, rot: -12 },
-  { Icon: SiDotnet, x: "8%", y: "72%", size: 100, rot: 15 },
-  { Icon: SiPython, x: "64%", y: "82%", size: 80, rot: -8 },
-  { Icon: SiMysql, x: "88%", y: "44%", size: 85, rot: 10 },
-  { Icon: SiJavascript, x: "42%", y: "8%", size: 75, rot: 20 },
-];
-
-const CT_ICONS = [
-  { Icon: VscAzure, x: "70%", y: "18%", size: 110, rot: 5 },
-  { Icon: SiAmazonwebservices, x: "8%", y: "70%", size: 100, rot: -12 },
-  { Icon: SiDocker, x: "48%", y: "8%", size: 90, rot: 8 },
-  { Icon: SiTerraform, x: "82%", y: "78%", size: 80, rot: -15 },
-  { Icon: SiGit, x: "18%", y: "14%", size: 75, rot: 12 },
-  { Icon: SiPostman, x: "62%", y: "84%", size: 70, rot: -5 },
-  { Icon: SiJest, x: "88%", y: "40%", size: 65, rot: 18 },
-];
-
-const YEAR_MARKS = ["2020", "2021", "2022", "2023", "2024", "2025"];
 
 /* ── Hooks ── */
 function useIsMobile() {
@@ -113,20 +155,6 @@ function useIsMobile() {
 }
 
 /* ── Helpers ── */
-const tagRotations = ["-1deg", "1.5deg", "-0.5deg", "2deg", "-1.5deg", "0.5deg", "-2deg", "1deg"];
-
-function SkillTag({ name, index }) {
-  const rot = tagRotations[index % tagRotations.length];
-  return (
-    <span
-      className="skill-tag inline-block rounded-full bg-white/[0.08] px-5 py-3 font-sans text-sm text-cream backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-apricot hover:text-dark-950 hover:shadow-lg hover:shadow-apricot/25 md:text-base"
-      style={{ transform: `rotate(${rot})`, opacity: 0 }}
-    >
-      {name}
-    </span>
-  );
-}
-
 function SectionLabel({ children, center }) {
   return (
     <div className={`mb-4 flex items-center gap-3 ${center ? "justify-center" : ""}`}>
@@ -154,14 +182,14 @@ function TechIcons({ icons }) {
     <Icon
       key={i}
       data-float-speed={0.4 + (i % 4) * 0.35}
-      className="pointer-events-none absolute select-none text-cream/[0.06]"
+      className="pointer-events-none absolute select-none text-cream/[0.05]"
       style={{ left: x, top: y, fontSize: size, transform: `rotate(${rot}deg)` }}
     />
   ));
 }
 
-/* ── Panel 1: About with interactive 3D photo ── */
-function PanelAbout() {
+/* ── Panel 1: About ── */
+function PanelAbout({ panelWidth }) {
   const panelRef = useRef(null);
   const tiltRef = useRef(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -174,19 +202,17 @@ function PanelAbout() {
     setTilt({ x: cx * 24, y: -cy * 24 });
   }, []);
 
-  const handleMouseLeave = useCallback(() => {
-    setTilt({ x: 0, y: 0 });
-  }, []);
+  const handleMouseLeave = useCallback(() => setTilt({ x: 0, y: 0 }), []);
 
   return (
     <div
       ref={panelRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="panel-content relative flex h-full w-screen flex-shrink-0 items-center px-10 md:px-20"
+      className="panel-content relative flex h-full flex-shrink-0 items-center px-10 md:px-20"
+      style={{ width: panelWidth }}
     >
       <div className="flex w-full flex-col gap-12 md:flex-row md:items-center">
-        {/* Text side */}
         <div className="md:w-[55%]">
           <SectionLabel>About Me</SectionLabel>
           <h2 className="font-display font-bold leading-[0.95] text-cream text-[clamp(2.5rem,6vw,6rem)]">
@@ -211,20 +237,13 @@ function PanelAbout() {
             className="group relative mt-8 inline-flex items-center gap-3 overflow-hidden rounded-full border border-apricot/30 bg-apricot/10 px-7 py-3.5 font-sans text-sm font-medium tracking-wide text-apricot backdrop-blur-md transition-all duration-500 hover:border-apricot/60 hover:bg-apricot/20 hover:shadow-[0_0_30px_rgba(247,136,47,0.15)] hover:tracking-wider"
           >
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-apricot/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-            <svg
-              className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
+            <svg className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 18h16" />
             </svg>
             <span className="relative">Resume</span>
           </a>
         </div>
 
-        {/* 3D Photo */}
         <div className="flex items-center justify-center md:w-[40%]" style={{ perspective: "900px" }}>
           <div className="about-photo-scroll" style={{ transformStyle: "preserve-3d" }}>
             <div
@@ -236,19 +255,11 @@ function PanelAbout() {
                 transform: `rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`,
               }}
             >
-              {/* Shadow layer pushed back in 3D space */}
-              <div
-                className="absolute inset-0 h-[320px] w-[260px] rounded-[2rem] bg-apricot/10 md:h-[420px] md:w-[320px]"
-                style={{ transform: "translateZ(-40px) scale(1.05)", filter: "blur(20px)" }}
-              />
-              {/* Mid layer - offset card for stacked depth */}
-              <div
-                className="absolute h-[320px] w-[260px] rounded-[2rem] border border-cream/[0.06] bg-cream/[0.03] md:h-[420px] md:w-[320px]"
-                style={{ transform: "translateZ(-20px) translate(8px, 8px)" }}
-              />
-              {/* Main card */}
-              <div
-                className="relative h-[320px] w-[260px] overflow-hidden rounded-[2rem] md:h-[420px] md:w-[320px]"
+              <div className="absolute inset-0 h-[320px] w-[260px] rounded-[2rem] bg-apricot/10 md:h-[420px] md:w-[320px]"
+                style={{ transform: "translateZ(-40px) scale(1.05)", filter: "blur(20px)" }} />
+              <div className="absolute h-[320px] w-[260px] rounded-[2rem] border border-cream/[0.06] bg-cream/[0.03] md:h-[420px] md:w-[320px]"
+                style={{ transform: "translateZ(-20px) translate(8px, 8px)" }} />
+              <div className="relative h-[320px] w-[260px] overflow-hidden rounded-[2rem] md:h-[420px] md:w-[320px]"
                 style={{
                   borderTop: "1px solid rgba(245,240,235,0.15)",
                   borderLeft: "1px solid rgba(245,240,235,0.1)",
@@ -256,19 +267,10 @@ function PanelAbout() {
                   transform: "translateZ(20px)",
                 }}
               >
-                <img
-                  src={PORTRAIT_SRC}
-                  alt="Meghana Narayana"
-                  className="about-photo h-full w-full object-cover object-top pt-4"
-                />
-                {/* Subtle bottom vignette */}
+                <img src={PORTRAIT_SRC} alt="Meghana Narayana" className="about-photo h-full w-full object-cover object-top pt-4" />
                 <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-gradient-to-t from-black/30 via-transparent to-transparent" />
               </div>
-              {/* Small accent dot */}
-              <div
-                className="absolute -bottom-3 -right-3 h-6 w-6 rounded-full bg-apricot"
-                style={{ transform: "translateZ(30px)" }}
-              />
+              <div className="absolute -bottom-3 -right-3 h-6 w-6 rounded-full bg-apricot" style={{ transform: "translateZ(30px)" }} />
             </div>
           </div>
         </div>
@@ -277,207 +279,96 @@ function PanelAbout() {
   );
 }
 
-/* ── Panel 2: Frontend Skills ── */
-function PanelFrontend() {
-  return (
-    <div id="skills" className="panel-content relative flex h-full w-screen flex-shrink-0 items-center overflow-hidden px-10 md:px-20">
-      <TechIcons icons={FE_ICONS} />
-      <FloatingCode snippets={SNIPPETS_FE} />
-      <div className="relative z-10 flex w-full flex-col gap-12 md:flex-row md:items-center">
-        <div className="md:w-[40%]">
-          <SectionLabel>Skills</SectionLabel>
-          <h2 className="font-display font-bold leading-[0.95] text-cream text-[clamp(2.5rem,7vw,7rem)]">
-            Front
-            <br />
-            <span className="text-apricot">end.</span>
-          </h2>
-          <p className="mt-4 font-accent text-xl text-apricot/60 -rotate-2">
-            where pixels become experiences
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-3 md:w-[60%]">
-          {frontendSkills.map((s, i) => (
-            <SkillTag key={s} name={s} index={i} />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ── Panel 3: Backend ── */
-function PanelBackend() {
-  return (
-    <div className="panel-content relative flex h-full w-screen flex-shrink-0 items-center overflow-hidden px-10 md:px-20">
-      <TechIcons icons={BE_ICONS} />
-      <FloatingCode snippets={SNIPPETS_BE} />
-      <div className="relative z-10 flex w-full flex-col-reverse gap-12 md:flex-row md:items-center">
-        <div className="flex flex-wrap gap-3 md:w-[60%]">
-          {backendSkills.map((s, i) => (
-            <SkillTag key={s} name={s} index={i} />
-          ))}
-        </div>
-        <div className="md:w-[40%]">
-          <SectionLabel>Skills</SectionLabel>
-          <h2 className="font-display font-bold leading-[0.95] text-cream text-[clamp(2.5rem,7vw,7rem)]">
-            Back
-            <br />
-            <span className="text-apricot">end.</span>
-          </h2>
-          <p className="mt-4 font-accent text-xl text-apricot/60 -rotate-2">
-            built to scale, designed to last
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ── Panel 4: Cloud & Tools ── */
-function PanelCloudTools() {
-  return (
-    <div className="panel-content relative flex h-full w-screen flex-shrink-0 items-center overflow-hidden px-10 md:px-20">
-      <TechIcons icons={CT_ICONS} />
-      <FloatingCode snippets={SNIPPETS_CT} />
-      <div className="relative z-10 flex w-full flex-col gap-12 md:flex-row md:items-center">
-        <div className="md:w-[40%]">
-          <SectionLabel>Skills</SectionLabel>
-          <h2 className="font-display font-bold leading-[0.95] text-cream text-[clamp(2rem,5vw,5.5rem)]">
-            Cloud
-            <br />
-            <span className="text-apricot">&amp; Tools.</span>
-          </h2>
-          <p className="mt-4 font-accent text-xl text-apricot/60 -rotate-2">
-            ship it, monitor it, repeat
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-3 md:w-[60%]">
-          {cloudToolsSkills.map((s, i) => (
-            <SkillTag key={s} name={s} index={i} />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ── Panel 5: Experience Timeline ── */
-function PanelExperience({ cursorRef, timelineTrackRef, lineRef }) {
+/* ── Experience Panel ── */
+function PanelExp({ role, snippets, icons, panelId, words, tagline, panelWidth }) {
   return (
     <div
-      id="experience"
-      className="panel-content relative flex h-full w-[250vw] flex-shrink-0 items-center overflow-hidden"
-      style={{
-        backgroundImage: "radial-gradient(circle, rgba(245,240,235,0.03) 1px, transparent 1px)",
-        backgroundSize: "24px 24px",
-      }}
+      id={panelId}
+      className="panel-content relative flex h-full flex-shrink-0 items-center overflow-hidden px-10 md:px-20"
+      style={{ width: panelWidth }}
     >
-      <div className="flex h-full w-full items-center">
-        {/* Left heading area */}
-        <div className="flex h-full w-[16%] flex-shrink-0 flex-col justify-center pl-12 pr-6">
-          <SectionLabel>Experience</SectionLabel>
-          <h2 className="font-display text-5xl font-bold leading-[0.95]">
-            <span className="text-cream">The road</span>
-            <br />
-            <span className="text-apricot" style={{ textShadow: "0 0 40px rgba(247,136,47,0.2)" }}>so far.</span>
+      <TechIcons icons={icons} />
+      <FloatingCode snippets={snippets} />
+
+      <div className="relative z-10 flex w-full h-full items-center gap-16">
+
+        {/* Left: identity */}
+        <div className="flex-shrink-0 w-[32%]">
+          <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-apricot/20 bg-apricot/10 px-4 py-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-apricot" />
+            <span className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-apricot">Experience</span>
+          </div>
+          <p className="font-sans text-xs font-medium uppercase tracking-widest text-cream/30 mb-2">
+            {role.duration}
+          </p>
+          <h2 className="font-display font-bold leading-[0.95] text-cream text-[clamp(1.5rem,3vw,3rem)]">
+            {role.role}
           </h2>
-          <p className="mt-4 font-accent text-xl text-apricot/60 -rotate-1">
-            building, breaking, rebuilding — repeat
+          <p className="mt-2 font-sans text-sm text-cream/40">
+            {role.company} &middot; {role.location}
           </p>
-          <p className="mt-3 font-sans text-sm text-cream/40">
-            5 roles &middot; 2 countries &middot; countless lessons
+          <p className="mt-6 font-accent text-xl text-apricot/65 -rotate-1 leading-snug">
+            {tagline}
           </p>
+          {/* Vertical accent line */}
+          <div className="mt-8 h-px w-12 bg-apricot/30" />
         </div>
 
-        {/* Right timeline area */}
-        <div className="relative flex-1 pr-12">
-          <div ref={timelineTrackRef} className="relative w-full">
-            {/* Background line at vertical center */}
-            <div className="absolute left-0 right-0 top-1/2 h-[2px] -translate-y-1/2 bg-apricot/15" />
-            {/* Filled progress line */}
-            <div
-              ref={lineRef}
-              className="absolute left-0 top-1/2 h-[2px] -translate-y-1/2 bg-apricot"
-              style={{ width: "0%" }}
-            />
-
-            {/* Year markers */}
-            <div className="absolute left-0 right-0 top-1/2 flex -translate-y-1/2 justify-between">
-              {YEAR_MARKS.map((yr) => (
-                <span key={yr} className="relative -top-5 font-mono text-[10px] text-cream/[0.08]">
-                  {yr}
-                </span>
-              ))}
-            </div>
-
-            {/* Cursor */}
-            <div
-              ref={cursorRef}
-              className="absolute top-1/2 z-30 -translate-x-1/2 -translate-y-1/2"
-              style={{ left: "0%" }}
-            >
-              <span className="block h-7 w-3 rounded-sm bg-apricot shadow-[0_0_14px_rgba(247,136,47,0.6),0_0_28px_rgba(247,136,47,0.25)] animate-pulse" />
-            </div>
-
-            {/* Nodes */}
-            <div className="relative flex justify-between">
-              {timelineRoles.map((role, i) => {
-                const above = i % 2 === 0;
-                return (
-                  <div
-                    key={role.company + role.duration}
-                    className="timeline-node relative flex flex-col items-center"
-                    style={{ width: `${100 / timelineRoles.length}%` }}
+        {/* Right: floating info chips */}
+        <div className="relative flex-1 h-[80%]">
+          {(words || []).map((chip, i) => {
+            const isLg = chip.scale === "lg";
+            const isMd = chip.scale === "md";
+            return (
+              <div
+                key={i}
+                className="exp-highlight absolute"
+                style={{
+                  left: chip.x,
+                  top: chip.y,
+                  transform: `rotate(${chip.rot}deg)`,
+                  opacity: 0,
+                  maxWidth: isLg ? "42%" : isMd ? "38%" : "32%",
+                }}
+              >
+                {/* Headline */}
+                <p
+                  className="font-display font-bold leading-none text-apricot"
+                  style={{
+                    fontSize: isLg ? "clamp(2rem,4vw,3.5rem)" : isMd ? "clamp(1.2rem,2.2vw,1.8rem)" : "clamp(0.9rem,1.5vw,1.2rem)",
+                    textShadow: "0 0 30px rgba(247,136,47,0.2)",
+                  }}
+                >
+                  {chip.headline}
+                </p>
+                {/* Label */}
+                <p
+                  className="mt-1 font-sans font-medium text-cream/80 leading-snug"
+                  style={{ fontSize: isLg ? "0.85rem" : isMd ? "0.78rem" : "0.7rem" }}
+                >
+                  {chip.label}
+                </p>
+                {/* Tech */}
+                {chip.tech && (
+                  <p
+                    className="mt-0.5 font-sans text-cream/55 leading-snug"
+                    style={{ fontSize: isLg ? "0.72rem" : "0.65rem" }}
                   >
-                    {above ? (
-                      <>
-                        <div
-                          className="glass mb-2 w-[290px] rounded-xl p-5 text-left"
-                          data-node-detail
-                          style={{ opacity: 0, transform: "translateY(10px) scale(0.95)" }}
-                        >
-                          <p className="font-sans text-xs font-semibold uppercase tracking-wider text-apricot">{role.duration}</p>
-                          <p className="mt-2 font-display text-base font-bold text-cream">{role.role}</p>
-                          <p className="mt-1 font-sans text-xs text-cream/60">{role.company} &middot; {role.location}</p>
-                          {role.highlights.map((h, hi) => (
-                            <p key={hi} className="mt-2 font-sans text-[11px] leading-relaxed text-cream/50">&bull; {h}</p>
-                          ))}
-                        </div>
-                        <div className="h-10 w-px bg-apricot/20" />
-                        <div className="timeline-dot h-4 w-4 rounded-full bg-apricot/40 shadow-md transition-all duration-300" />
-                        <div className="mt-2 h-20" />
-                      </>
-                    ) : (
-                      <>
-                        <div className="mb-2 h-20" />
-                        <div className="timeline-dot h-4 w-4 rounded-full bg-apricot/40 shadow-md transition-all duration-300" />
-                        <div className="h-10 w-px bg-apricot/20" />
-                        <div
-                          className="glass mt-2 w-[290px] rounded-xl p-5 text-left"
-                          data-node-detail
-                          style={{ opacity: 0, transform: "translateY(10px) scale(0.95)" }}
-                        >
-                          <p className="font-sans text-xs font-semibold uppercase tracking-wider text-apricot">{role.duration}</p>
-                          <p className="mt-2 font-display text-base font-bold text-cream">{role.role}</p>
-                          <p className="mt-1 font-sans text-xs text-cream/60">{role.company} &middot; {role.location}</p>
-                          {role.highlights.map((h, hi) => (
-                            <p key={hi} className="mt-2 font-sans text-[11px] leading-relaxed text-cream/50">&bull; {h}</p>
-                          ))}
-                        </div>
-                      </>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+                    {chip.tech}
+                  </p>
+                )}
+                {/* Bottom accent line */}
+                <div className="mt-2 h-px bg-apricot/20" style={{ width: isLg ? "2.5rem" : "1.5rem" }} />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
   );
 }
 
-/* ── Panel Dots Indicator ── */
+/* ── Panel Dots ── */
 function PanelDots({ activeIndex }) {
   return (
     <div className="pointer-events-none absolute bottom-6 left-0 right-0 z-40 flex justify-center gap-2">
@@ -512,41 +403,10 @@ function MobileLayout() {
           Code meets <span className="text-apricot">curiosity.</span>
         </h2>
         <p className="mt-4 font-sans text-base leading-relaxed text-cream/70">
-          I&apos;m a software developer who started in biotechnology. That
-          background gave me a unique lens&mdash;I see systems everywhere,
-          whether biological or digital.
+          I&apos;m a software engineer who started in biotechnology. That background
+          gave me a unique lens — I see systems everywhere, whether biological or digital.
         </p>
         <img src={PORTRAIT_SRC} alt="Meghana Narayana" className="mt-8 w-full max-w-xs rounded-2xl border border-apricot/20 object-cover" />
-      </section>
-
-      <section id="skills" className="bg-[#1a0825] px-6 py-20">
-        <SectionLabel>Skills</SectionLabel>
-        <h2 className="font-display text-4xl font-bold text-cream">Front<span className="text-apricot">end.</span></h2>
-        <div className="mt-6 flex flex-wrap gap-2">
-          {frontendSkills.map((s) => (
-            <span key={s} className="inline-block rounded-full bg-white/[0.08] px-4 py-2 font-sans text-sm text-cream">{s}</span>
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-[#0d2137] px-6 py-20">
-        <SectionLabel>Skills</SectionLabel>
-        <h2 className="font-display text-4xl font-bold text-cream">Back<span className="text-apricot">end.</span></h2>
-        <div className="mt-6 flex flex-wrap gap-2">
-          {backendSkills.map((s) => (
-            <span key={s} className="inline-block rounded-full bg-white/[0.08] px-4 py-2 font-sans text-sm text-cream">{s}</span>
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-[#0a2818] px-6 py-20">
-        <SectionLabel>Skills</SectionLabel>
-        <h2 className="font-display text-4xl font-bold text-cream">Cloud <span className="text-apricot">&amp; Tools.</span></h2>
-        <div className="mt-6 flex flex-wrap gap-2">
-          {cloudToolsSkills.map((s) => (
-            <span key={s} className="inline-block rounded-full bg-white/[0.08] px-4 py-2 font-sans text-sm text-cream">{s}</span>
-          ))}
-        </div>
       </section>
 
       <section id="experience" className="bg-dark-950 px-6 py-20">
@@ -555,14 +415,21 @@ function MobileLayout() {
           The road <span className="text-apricot">so far.</span>
         </h2>
         <div className="relative border-l-2 border-apricot/30 pl-8">
-          {timelineRoles.map((role) => (
+          {expPanels.map((role) => (
             <div key={role.company + role.duration} className="relative mb-12 last:mb-0">
               <div className="absolute -left-[41px] top-1 h-4 w-4 rounded-full bg-apricot shadow-md shadow-apricot/30" />
               <p className="font-sans text-sm text-apricot">{role.duration}</p>
               <p className="mt-1 font-display text-lg font-semibold text-cream">{role.role}</p>
               <p className="font-sans text-sm text-cream/70">{role.company}</p>
-              {role.highlights.map((h, hi) => (
-                <p key={hi} className="mt-2 font-sans text-xs leading-relaxed text-cream/50">{h}</p>
+              {(role.bullets || []).map((bullet, bi) => (
+                <p key={bi} className="mt-2 font-sans text-xs leading-relaxed text-cream/50">
+                  &bull;{" "}
+                  {bullet.map((chunk, ci) =>
+                    chunk.highlight
+                      ? <span key={ci} className="font-semibold text-apricot/80">{chunk.text}</span>
+                      : <span key={ci}>{chunk.text}</span>
+                  )}
+                </p>
               ))}
             </div>
           ))}
@@ -577,51 +444,43 @@ export default function HorizontalScroll() {
   const isMobile = useIsMobile();
   const containerRef = useRef(null);
   const trackRef = useRef(null);
-  const cursorRef = useRef(null);
-  const timelineTrackRef = useRef(null);
-  const lineRef = useRef(null);
   const progressRef = useRef(null);
   const [activePanel, setActivePanel] = useState(0);
+  const [panelWidth, setPanelWidth] = useState(
+    typeof window === "undefined" ? 0 : window.innerWidth
+  );
   const { setActiveSection } = useActiveSection();
+
+  // Panels are sized off window.innerWidth (not CSS 100vw) so their rendered
+  // width always matches the scroll-distance math below — 100vw overshoots by
+  // the scrollbar's width, which otherwise leaves a dead scroll gap at the end.
+  useEffect(() => {
+    const update = () => setPanelWidth(window.innerWidth);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   useEffect(() => {
     if (isMobile || !trackRef.current || !containerRef.current) return;
 
-    const createPanelScrollHandler = (panelId, offsetFactor = 0) => () => {
+    const handleScrollToExp = () => {
       const track = trackRef.current;
       if (!track) return;
-
       const st = ScrollTrigger.getById("horizontalScroll");
       if (!st) return;
-
       const totalWidth = track.scrollWidth;
       const vw = window.innerWidth;
       const scrollDist = totalWidth - vw;
-
-      const panel = track.querySelector(`#${panelId}`);
+      const panel = track.querySelector("#experience");
       if (!panel) return;
-
-      const extraOffset = vw * offsetFactor;
-      const targetOffset = Math.min(panel.offsetLeft + extraOffset, totalWidth - vw);
-
-      const progress = scrollDist > 0 ? targetOffset / scrollDist : 0;
+      const progress = scrollDist > 0 ? panel.offsetLeft / scrollDist : 0;
       const targetScrollY = st.start + progress * (st.end - st.start);
-
       st.scroll(targetScrollY);
     };
 
-    const handleScrollToSkills = createPanelScrollHandler("skills", 0.05);
-    const handleScrollToExperience = createPanelScrollHandler("experience", 0.03);
-
-    window.addEventListener("nav:scrollToSkills", handleScrollToSkills);
-    window.addEventListener("nav:scrollToExperience", handleScrollToExperience);
-
-    if (containerRef.current) {
-      containerRef.current.__navCleanup = () => {
-        window.removeEventListener("nav:scrollToSkills", handleScrollToSkills);
-        window.removeEventListener("nav:scrollToExperience", handleScrollToExperience);
-      };
-    }
+    window.addEventListener("nav:scrollToExperience", handleScrollToExp);
+    window.addEventListener("nav:scrollToSkills", handleScrollToExp);
 
     const ctx = gsap.context(() => {
       const track = trackRef.current;
@@ -647,27 +506,18 @@ export default function HorizontalScroll() {
             const panels = track.querySelectorAll(".panel-content");
             let idx = 0;
             for (let i = panels.length - 1; i >= 0; i--) {
-              if (scrollX >= panels[i].offsetLeft - vw * 0.4) {
-                idx = i;
-                break;
-              }
+              if (scrollX >= panels[i].offsetLeft - vw * 0.4) { idx = i; break; }
             }
             setActivePanel(idx);
-            const sectionMap = ["home", "skills", "skills", "skills", "experience"];
-            setActiveSection(sectionMap[idx]);
+            setActiveSection(idx === 0 ? "home" : "experience");
           },
         },
       });
 
-      // Horizontal track movement
       mainTl.to(track, { x: -scrollDist, ease: "none", duration: 1 }, 0);
 
-      // Smooth flowing background color
       BG_STOPS.forEach(({ p, c }, i) => {
-        if (i === 0) {
-          gsap.set(container, { backgroundColor: c });
-          return;
-        }
+        if (i === 0) { gsap.set(container, { backgroundColor: c }); return; }
         mainTl.to(container, {
           backgroundColor: c,
           duration: p - BG_STOPS[i - 1].p,
@@ -675,76 +525,59 @@ export default function HorizontalScroll() {
         }, BG_STOPS[i - 1].p);
       });
 
-      // 3D photo: entrance + peel-away via scroll on the scroll-layer
+      // 3D photo entrance + peel-away
       const scrollLayer = track.querySelector(".about-photo-scroll");
       if (scrollLayer) {
         const panelFrac = vw / totalWidth;
         mainTl.fromTo(scrollLayer,
           { rotateY: -15, scale: 0.92 },
-          { rotateY: 0, scale: 1, ease: "power1.out", duration: panelFrac * 0.5 },
-          0
-        );
+          { rotateY: 0, scale: 1, ease: "power1.out", duration: panelFrac * 0.5 }, 0);
         mainTl.to(scrollLayer,
           { rotateY: 20, scale: 0.88, opacity: 0.7, ease: "power2.in", duration: panelFrac * 0.5 },
-          panelFrac * 0.5
-        );
+          panelFrac * 0.5);
       }
 
-      // Parallax for floating elements
+      // Parallax floating elements
       track.querySelectorAll("[data-float-speed]").forEach((el) => {
         const speed = Number.parseFloat(el.dataset.floatSpeed);
         mainTl.to(el, { x: (1 - speed) * scrollDist * 0.25, ease: "none", duration: 1 }, 0);
       });
 
-      // Staggered skill tags
-      gsap.set(track.querySelectorAll(".skill-tag"), { opacity: 0, y: 20 });
-      track.querySelectorAll(".skill-tag").forEach((tag) => {
-        const panel = tag.closest("[class*='w-screen']");
-        if (!panel) return;
+      // Staggered highlight bullets per panel
+      const panels = track.querySelectorAll(".panel-content");
+      panels.forEach((panel) => {
+        const highlights = panel.querySelectorAll(".exp-highlight");
+        if (!highlights.length) return;
         const revealAt = Math.max(0, (panel.offsetLeft - vw * 0.3)) / totalWidth;
-        mainTl.to(tag, { opacity: 1, y: 0, duration: 0.02, ease: "power2.out" }, revealAt);
+        highlights.forEach((el, i) => {
+          mainTl.to(el, { opacity: 1, y: 0, duration: 0.025, ease: "power2.out" }, revealAt + i * 0.015);
+        });
       });
 
-      // Experience timeline
-      if (cursorRef.current && timelineTrackRef.current && lineRef.current) {
-        const expPanel = track.querySelector("#experience");
-        if (!expPanel) return;
-        const pStart = expPanel.offsetLeft / totalWidth;
-        const pEnd = (expPanel.offsetLeft + expPanel.offsetWidth) / totalWidth;
-        const range = pEnd - pStart;
-
-        mainTl.fromTo(cursorRef.current, { left: "0%" }, { left: "100%", ease: "none", duration: range }, pStart);
-        mainTl.fromTo(lineRef.current, { width: "0%" }, { width: "100%", ease: "none", duration: range }, pStart);
-
-        const details = timelineTrackRef.current.querySelectorAll("[data-node-detail]");
-        const dots = timelineTrackRef.current.querySelectorAll(".timeline-dot");
-        const count = details.length;
-
-        details.forEach((detail, i) => {
-          mainTl.to(detail, { opacity: 1, y: 0, scale: 1, duration: 0.04, ease: "back.out(1.4)" }, pStart + (range * (i + 0.25)) / count);
-        });
-
-        dots.forEach((dot, i) => {
-          mainTl.to(dot, {
-            backgroundColor: "#F7882F",
-            boxShadow: "0 0 14px rgba(247,136,47,0.5)",
-            scale: 1.4,
-            duration: 0.04,
-            ease: "power2.out",
-          }, pStart + (range * (i + 0.2)) / count);
-        });
-      }
     }, containerRef);
 
     return () => {
       const st = ScrollTrigger.getById("horizontalScroll");
       if (st) st.kill();
       ctx.revert();
-      containerRef.current?.__navCleanup?.();
+      window.removeEventListener("nav:scrollToExperience", handleScrollToExp);
+      window.removeEventListener("nav:scrollToSkills", handleScrollToExp);
     };
   }, [isMobile]);
 
   if (isMobile) return <MobileLayout />;
+
+  const TAGLINES = [
+    "building AI that grounds policy in evidence",
+    "scaled platform to 10K+ users · earned the Ovation Award",
+    "automating the tedious, optimizing the rest",
+    "guiding the next wave of engineers",
+    "making code click for the next generation",
+  ];
+  const panelData = expPanels.map((role, i) => ({
+    ...role,
+    tagline: TAGLINES[i] || "",
+  }));
 
   return (
     <div
@@ -753,11 +586,19 @@ export default function HorizontalScroll() {
       style={{ backgroundColor: BG_STOPS[0].c }}
     >
       <div ref={trackRef} className="flex h-screen will-change-transform">
-        <PanelAbout />
-        <PanelFrontend />
-        <PanelBackend />
-        <PanelCloudTools />
-        <PanelExperience cursorRef={cursorRef} timelineTrackRef={timelineTrackRef} lineRef={lineRef} />
+        <PanelAbout panelWidth={panelWidth} />
+        {panelData.map((role, i) => (
+          <PanelExp
+            key={role.company + role.duration}
+            panelWidth={panelWidth}
+            role={role}
+            snippets={SNIPPETS[i] || []}
+            icons={EXP_ICONS[i] || []}
+            words={CHIPS[i] || []}
+            tagline={role.tagline}
+            panelId={i === 0 ? "experience" : `exp-panel-${i}`}
+          />
+        ))}
       </div>
       <PanelDots activeIndex={activePanel} />
       <ProgressBar progressRef={progressRef} />

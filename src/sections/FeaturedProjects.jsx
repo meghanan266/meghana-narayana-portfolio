@@ -7,6 +7,20 @@ import { featuredProjects } from "../data/projects";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const POSTER_GRADIENTS = {
+  AI: "from-[#1a0f08] via-[#1f1208] to-[#0a0a0a]",
+  "Full Stack": "from-[#0d1117] via-[#111827] to-[#0a0a0a]",
+  Backend: "from-[#111008] via-[#181500] to-[#0a0a0a]",
+  Data: "from-[#071410] via-[#0a1a14] to-[#0a0a0a]",
+};
+
+const CATEGORY_BADGE = {
+  AI: "#F7882F",
+  "Full Stack": "#6B7A8F",
+  Backend: "#F7C331",
+  Data: "#7EA16B",
+};
+
 function useIsMobile() {
   const [mobile, setMobile] = useState(() => {
     if (typeof window === "undefined") return false;
@@ -22,18 +36,29 @@ function useIsMobile() {
 
 function SectionHeader() {
   return (
-    <div className="mx-auto max-w-6xl px-6 pt-16 pb-8 md:px-10">
-      <div className="mb-4 flex items-center gap-3">
-        <span className="h-px w-8 bg-apricot" />
-        <span className="font-sans text-sm uppercase tracking-widest text-apricot">
-          Featured Projects
+    <div className="mx-auto max-w-6xl px-6 pt-4 pb-8 md:px-10">
+      <span className="inline-flex items-center gap-2 rounded-full border border-apricot/30 bg-apricot/5 px-3 py-1">
+        <span className="relative flex h-1.5 w-1.5">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-apricot opacity-60" />
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-apricot" />
         </span>
-      </div>
+        <span className="font-sans text-[11px] font-bold uppercase tracking-[0.28em] text-apricot">
+          Portfolio
+        </span>
+      </span>
+      <h2 className="mt-2 font-display text-2xl font-bold text-cream md:text-3xl">
+        Featured{" "}
+        <span className="font-accent italic text-apricot">Projects</span>
+      </h2>
     </div>
   );
 }
 
 function ProjectCard({ project, index, cardRef, isActive }) {
+  const hasImage = Boolean(project.image);
+  const gradient = POSTER_GRADIENTS[project.category] || POSTER_GRADIENTS["Full Stack"];
+  const badgeColor = CATEGORY_BADGE[project.category] || "#8A97A8";
+
   return (
     <div
       ref={cardRef}
@@ -46,30 +71,60 @@ function ProjectCard({ project, index, cardRef, isActive }) {
           isActive ? "cursor-pointer hover:shadow-[0_15px_60px_rgba(0,0,0,0.5)]" : ""
         }`}
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${project.image})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        {/* Background: image or gradient */}
+        {hasImage ? (
+          <div
+            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.02]"
+            style={{ backgroundImage: `url(${project.image})` }}
+          />
+        ) : (
+          <div className={`absolute inset-0 bg-gradient-to-br ${gradient}`} />
+        )}
 
+        {/* Gradient overlay — always present, stronger when no image */}
+        <div className={`absolute inset-0 bg-gradient-to-t ${hasImage ? "from-black/80 via-black/30 to-black/10" : "from-black/60 via-black/20 to-transparent"}`} />
+
+        {/* Accent top border */}
+        <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ backgroundColor: badgeColor, opacity: 0.5 }} />
+
+        {/* Content — always visible */}
         <div className="relative flex h-full flex-col justify-end p-8 md:p-12">
-          <span className="glass mb-4 inline-block w-fit rounded-full px-4 py-1.5 text-xs uppercase tracking-wider text-cream">
+          {/* Category badge */}
+          <span
+            className="mb-4 inline-block w-fit rounded-full px-4 py-1.5 font-sans text-xs font-semibold uppercase tracking-wider"
+            style={{ backgroundColor: `${badgeColor}20`, color: badgeColor, border: `1px solid ${badgeColor}40` }}
+          >
             {project.category}
           </span>
-          <h3 className="font-display text-3xl font-bold text-cream md:text-4xl">
+
+          <h3 className="font-display text-3xl font-bold text-cream md:text-5xl leading-tight">
             {project.name}
           </h3>
-          <p className="mt-2 max-w-xl font-sans text-base leading-relaxed text-cream/70 line-clamp-2">
-            {project.description}
-          </p>
-          <span className="mt-4 inline-flex items-center gap-2 font-sans text-apricot transition-all duration-300 group-hover:gap-3">
+
+          {/* Short description — always shown */}
+          {project.shortDescription && (
+            <p className="mt-3 max-w-2xl font-sans text-base leading-relaxed text-cream/70 line-clamp-2">
+              {project.shortDescription}
+            </p>
+          )}
+
+          {/* Tech tags */}
+          {project.tags && (
+            <div className="mt-4 flex flex-wrap gap-2">
+              {project.tags.slice(0, 4).map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full bg-white/[0.08] px-3 py-1 font-sans text-xs text-cream/60 backdrop-blur-sm"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <span className="mt-5 inline-flex items-center gap-2 font-sans text-sm font-medium text-apricot transition-all duration-300 group-hover:gap-3">
             View Project
-            <span
-              aria-hidden="true"
-              className="relative inline-block transition-transform duration-300 group-hover:translate-x-1"
-            >
-              &rarr;
-            </span>
+            <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
           </span>
         </div>
       </Link>
@@ -160,40 +215,53 @@ function DesktopStackedCards() {
 function MobileCards() {
   return (
     <div className="flex flex-col gap-8 px-4">
-      {featuredProjects.map((project) => (
-        <motion.div
-          key={project.id}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
-        >
-          <Link
-            to={`/project/${project.id}`}
-            className="group relative block h-[50vh] w-full overflow-hidden rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.3)]"
+      {featuredProjects.map((project) => {
+        const hasImage = Boolean(project.image);
+        const gradient = POSTER_GRADIENTS[project.category] || POSTER_GRADIENTS["Full Stack"];
+        const badgeColor = CATEGORY_BADGE[project.category] || "#8A97A8";
+        return (
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
           >
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${project.image})` }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-            <div className="relative flex h-full flex-col justify-end p-6">
-              <span className="glass mb-3 inline-block w-fit rounded-full px-3 py-1 text-xs uppercase tracking-wider text-cream">
-                {project.category}
-              </span>
-              <h3 className="font-display text-2xl font-bold text-cream">
-                {project.name}
-              </h3>
-              <p className="mt-2 font-sans text-sm leading-relaxed text-cream/70 line-clamp-2">
-                {project.description}
-              </p>
-              <span className="mt-3 inline-flex items-center gap-2 font-sans text-sm text-apricot">
-                View Project <span aria-hidden="true">&rarr;</span>
-              </span>
-            </div>
-          </Link>
-        </motion.div>
-      ))}
+            <Link
+              to={`/project/${project.id}`}
+              className="group relative block h-[50vh] w-full overflow-hidden rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.3)]"
+            >
+              {hasImage ? (
+                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${project.image})` }} />
+              ) : (
+                <div className={`absolute inset-0 bg-gradient-to-br ${gradient}`} />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ backgroundColor: badgeColor, opacity: 0.5 }} />
+              <div className="relative flex h-full flex-col justify-end p-6">
+                <span className="mb-3 inline-block w-fit rounded-full px-3 py-1 font-sans text-xs font-semibold uppercase tracking-wider"
+                  style={{ backgroundColor: `${badgeColor}20`, color: badgeColor, border: `1px solid ${badgeColor}40` }}>
+                  {project.category}
+                </span>
+                <h3 className="font-display text-2xl font-bold text-cream">{project.name}</h3>
+                {project.shortDescription && (
+                  <p className="mt-2 font-sans text-sm leading-relaxed text-cream/70 line-clamp-2">{project.shortDescription}</p>
+                )}
+                {project.tags && (
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {project.tags.slice(0, 3).map((tag) => (
+                      <span key={tag} className="rounded-full bg-white/[0.08] px-2.5 py-0.5 font-sans text-xs text-cream/60">{tag}</span>
+                    ))}
+                  </div>
+                )}
+                <span className="mt-3 inline-flex items-center gap-2 font-sans text-sm text-apricot">
+                  View Project <span aria-hidden="true">&rarr;</span>
+                </span>
+              </div>
+            </Link>
+          </motion.div>
+        );
+      })}
     </div>
   );
 }

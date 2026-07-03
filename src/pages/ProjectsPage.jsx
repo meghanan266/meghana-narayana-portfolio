@@ -24,7 +24,7 @@ const cardVariants = {
   },
 };
 
-const FILTERS = ["All", "AI", "Full Stack", "Backend", "Data", "Other"];
+const FILTERS = ["All", "AI", "Full Stack", "Backend", "Data"];
 
 const CATEGORY_COLORS = {
   AI: { bg: "bg-apricot/10", border: "border-apricot/30", text: "text-apricot", badge: "#F7882F" },
@@ -102,6 +102,7 @@ function PosterCard({ project }) {
 
 function ProjectCard({ project, size }) {
   const hasImage = Boolean(project.image);
+  const color = CATEGORY_COLORS[project.category] || CATEGORY_COLORS.Other;
 
   return (
     <motion.div variants={cardVariants} className={getCardClasses(size)}>
@@ -110,11 +111,36 @@ function ProjectCard({ project, size }) {
         className="group relative block h-full w-full overflow-hidden rounded-sm transition-all duration-500"
       >
         {hasImage ? (
-          <img
-            src={project.image}
-            alt={project.name}
-            className="absolute inset-0 h-full w-full object-cover grayscale transition-[filter] duration-500 group-hover:grayscale-0"
-          />
+          <>
+            <img
+              src={project.image}
+              alt={project.name}
+              className="absolute inset-0 h-full w-full object-cover grayscale transition-[filter] duration-500 group-hover:grayscale-0"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+            <div className="absolute inset-0 flex flex-col justify-between p-6">
+              <span
+                className="self-start font-sans text-xs font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full"
+                style={{
+                  backgroundColor: color.badge,
+                  color: "#0a0a0a",
+                }}
+              >
+                {project.category}
+              </span>
+
+              <div>
+                <h3 className="font-display text-2xl font-bold text-cream leading-tight mb-2">
+                  {project.name}
+                </h3>
+                {project.shortDescription && (
+                  <p className="font-sans text-sm text-cream/60 line-clamp-2 leading-relaxed">
+                    {project.shortDescription}
+                  </p>
+                )}
+              </div>
+            </div>
+          </>
         ) : (
           <PosterCard project={project} />
         )}

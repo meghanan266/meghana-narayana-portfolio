@@ -220,26 +220,34 @@
     "link": "https://github.com/meghanan266/Healthsense-IoT-Monitoring"
   },
   "opsdash": {
-    "title": "OpsDash: Multi-Tenant Operations Dashboard",
-    "description": "Prevented cross-tenant data leaks with EF Core global query filters and JWT-based isolation. Replaced polling with SignalR WebSocket push and Redis caching for real-time operational metrics across multiple tenant environments.",
-    "problem": "Multi-tenant dashboards risk cross-tenant data leaks and stale metrics from polling-based architectures.",
-    "approach": "Implemented EF Core global query filters with JWT-based tenant isolation, replaced polling with SignalR WebSocket push, and added Redis caching.",
-    "impact": "Zero cross-tenant data leaks, 70% reduction in dashboard update latency, and significantly lower database load through intelligent caching.",
+    "title": "OpsDash: Real-Time Operational Intelligence Platform",
+    "description": "A multi-tenant SaaS platform where organizations ingest operational metrics, monitor them in real-time, and get intelligent alerts when something goes wrong or is predicted to go wrong. Instead of a passive dashboard, OpsDash actively detects anomalies with statistical analysis, correlates related metric movements, forecasts trends, computes a weighted organizational health score, and auto-groups anomalies into incidents with full timelines — the same generic data model applies across industries (finance, healthcare, retail, ecommerce, travel), from fraud-score spikes to ER wait-time drift to checkout abandonment.",
+    "problem": "Metrics drift silently until it's too late — a hospital doesn't notice ER wait times creeping up until patients leave, a retailer doesn't catch a fulfillment slowdown until orders pile up. Passive dashboards show data; they don't tell you what's wrong, what's trending badly, or what else moved at the same time. On top of that, multi-tenant SaaS platforms risk cross-tenant data leaks and stale metrics from polling-based architectures.",
+    "approach": "Built a rolling per-tenant statistical baseline (mean, stddev, trend) per metric and flag anomalies via Z-score deviation with tiered severity (Warning/Critical/Severe). When an anomaly fires, a time-windowed correlation pass (±15 min) surfaces other metrics that moved together, and anomalies within a 30-minute window auto-group into a single Incident with a full event timeline. Forecasting uses weighted moving average by default (linear regression for trend mode) to power predictive alerting — thresholds evaluated against forecasted values, not just current ones. A weighted tenant health score (metric normalcy, anomaly density, trend direction, response time) is recalculated on every ingestion. Tenant isolation is enforced in three layers: JWT-derived TenantId in middleware, EF Core global query filters, and API-level authorization. Replaced polling with SignalR WebSocket push (tenant-scoped groups) and swapped IDistributedCache from in-memory to Redis via config only — no code changes.",
+    "impact": "Zero cross-tenant data leaks, 85% reduction in dashboard update latency via SignalR + Redis, and anomalies that used to require manual spot-checking now surface pre-correlated and pre-grouped into incidents — turning three unrelated-looking alerts into one actionable timeline.",
     "technologies": [
-      ".NET Core",
+      "ASP.NET Core 9",
+      "Angular 19",
       "SignalR",
       "Redis",
-      "Docker",
       "Azure",
-      "Entity Framework",
-      "JWT",
-      "SQL Server"
+      "Entity Framework Core 9",
+      "JWT / RBAC",
+      "SQL Server",
+      "Docker",
+      "FluentValidation",
+      "AutoMapper",
+      "xUnit"
     ],
     "keyFeatures": [
-      "Implemented tenant-level data isolation using EF Core global query filters and JWT claims to prevent cross-tenant data leaks",
-      "Replaced HTTP polling with SignalR WebSocket push for real-time dashboard updates, reducing latency by 70%",
-      "Designed Redis caching layer for frequently accessed operational metrics, cutting database load significantly",
-      "Containerized the application with Docker and deployed to Azure for scalable multi-tenant hosting"
+      "Z-score anomaly detection engine with rolling per-tenant baselines and tiered severity (Warning, Critical, Severe)",
+      "Time-windowed metric correlation surfaces related movements the instant an anomaly fires, instead of firing isolated alerts",
+      "Forecasting via weighted moving average / linear regression, powering predictive alerts on projected (not just current) threshold breaches",
+      "Weighted tenant health score (0–100) composited from metric normalcy, anomaly density, trend direction, and mean time to acknowledge",
+      "Incident auto-grouping via time-window clustering with full lifecycle (Open → Acknowledged → Investigating → Resolved) and event timeline",
+      "Three-layer tenant isolation: JWT claims, EF Core global query filters, and API-level authorization — zero cross-tenant leaks",
+      "Replaced HTTP polling with SignalR WebSocket push over tenant-scoped groups, and IDistributedCache abstraction swapped to Azure Redis in prod via config only, cutting dashboard latency 85%",
+      "Clean Architecture (Controllers → Services → Repositories) with FluentValidation, AutoMapper DTOs, and xUnit coverage on the intelligence services"
     ],
     "screenshots": [],
     "link": ""
