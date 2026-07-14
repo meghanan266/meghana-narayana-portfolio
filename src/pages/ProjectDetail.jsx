@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -74,31 +74,11 @@ function FeatureCard({ feature, index }) {
 
 export default function ProjectDetail() {
   const { projectId } = useParams();
-  const [project, setProject] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const project = allProjects.find((p) => p.id === projectId) || null;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [projectId]);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch("/assets/projectDetails.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setProject(data[projectId] || null);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [projectId]);
-
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-dark-950">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-apricot border-t-transparent" />
-      </div>
-    );
-  }
 
   if (!project) {
     return (
@@ -117,14 +97,13 @@ export default function ProjectDetail() {
   }
 
   const { prev, next } = getAdjacentProjects(projectId);
-  const projectMeta = allProjects.find((p) => p.id === projectId);
 
   return (
     <div className="min-h-screen bg-dark-950">
       {/* ── Hero ── */}
       <header className="relative overflow-hidden pb-16 pt-24 md:pb-24 md:pt-32">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-apricot/[0.03] via-transparent to-transparent" />
-        <div className="relative mx-auto max-w-5xl px-6 md:px-16">
+        <div className="relative mx-auto max-w-7xl px-6 md:px-12">
           <Link
             to="/projects"
             className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-cream/40 transition-colors duration-300 hover:text-apricot"
@@ -133,10 +112,10 @@ export default function ProjectDetail() {
             Back to Projects
           </Link>
 
-          {projectMeta?.category && (
+          {project?.category && (
             <motion.div custom={0.1} variants={fadeUp} initial="hidden" animate="visible" className="mt-8">
               <span className="inline-block rounded-full bg-apricot/10 px-4 py-1.5 font-sans text-xs uppercase tracking-wider text-apricot">
-                {projectMeta.category}
+                {project.category}
               </span>
             </motion.div>
           )}
@@ -193,7 +172,7 @@ export default function ProjectDetail() {
 
       {/* ── The Story: Problem → Approach → Impact ── */}
       {(project.problem || project.approach || project.impact) && (
-        <section className="mx-auto max-w-5xl px-6 py-12 md:px-16">
+        <section className="mx-auto max-w-7xl px-6 py-12 md:px-12">
           <motion.h2
             initial="hidden"
             whileInView="visible"
@@ -220,7 +199,7 @@ export default function ProjectDetail() {
 
       {/* ── Key Features (glass cards grid) ── */}
       {project.keyFeatures?.length > 0 && (
-        <section className="mx-auto max-w-5xl px-6 py-12 md:px-16">
+        <section className="mx-auto max-w-7xl px-6 py-12 md:px-12">
           <motion.h2
             initial="hidden"
             whileInView="visible"
@@ -241,7 +220,7 @@ export default function ProjectDetail() {
 
       {/* ── Screenshots ── */}
       {project.screenshots?.length > 0 && (
-        <section className="mx-auto max-w-5xl px-6 py-12 md:px-16">
+        <section className="mx-auto max-w-7xl px-6 py-12 md:px-12">
           <motion.h2
             initial="hidden"
             whileInView="visible"
@@ -287,7 +266,7 @@ export default function ProjectDetail() {
 
       {/* ── Prev / Next ── */}
       {(prev || next) && (
-        <div className="mx-auto max-w-5xl border-t border-cream/10 px-6 py-12 md:px-16">
+        <div className="mx-auto max-w-7xl border-t border-cream/10 px-6 py-12 md:px-12">
           <div className="flex items-start justify-between">
             {prev && (
               <Link
